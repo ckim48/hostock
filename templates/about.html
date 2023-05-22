@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>StockTicker</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../static/assets/img/favicon.png" rel="icon">
+  <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Logis - v1.2.1
+  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="text-blue">StockTicker</h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h2>AAPL</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+          <div class="col-lg-4 position-relative align-self-start order-lg-last order-first">
+              <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+          </div>
+          <div class="col-lg-8 content order-last  order-lg-first">
+            <h3>Sentimental Analysis</h3>
+            <p>
+              The Sentimental result on news title of AAPL from one month ago to now.
+            </p>
+            <ul>
+              <li data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-face-smile" style="color:green"></i>
+                <div>
+                  <h5 >Positive: <span> 62.5%</span></h5>
+                </div>
+              </li>
+              <li data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-face-meh" ></i>
+                <div>
+                  <h5>Neutral: <span> 15.9%</span></h5>
+                </div>
+              </li>
+              <li data-aos="fade-up" data-aos-delay="300">
+               <i class="fa-solid fa-face-sad-tear" style="color:red"></i>
+                <div>
+                  <h5>Negative: <span> 21.6%</span></h5>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+          <div class="col-lg-5 position-relative align-self-start order-lg-last order-first mt-5">
+              <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+
+          </div>
+          <div class="col-lg-7 content order-last  order-lg-first">
+            <h3>Current Market Status</h3>
+            <p>
+              The market status from last 30 days to now is:
+            </p>
+              
+                            <h6>Status: <span class="ml-4 text-red">Bearish</span></h6>
+
+              <h6>RSI: <span class="ml-4 text-red">Sell Signal</span></h6>
+              <h6>MACD: <span class="ml-4 text-red">Sell Signal</span></h6>
+              <h6>Bollinger Band: <span class="text-green">Buy Signal</span></h6>
+              <h6>Sentiment: <span class="ml-4 text-green">Positive</span></h6>
+              <h3 class="text-black">Overall: <span class="ml-4 text-red">SELL</span></h3>
+            
+<!--             <ul>
+              <li data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-face-smile" style="color:green"></i>
+                <div>
+                  <h5 >Positive: <span> 62.5%</span></h5>
+                </div>
+              </li>
+              <li data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-face-meh" ></i>
+                <div>
+                  <h5>Neutral: <span> 15.9%</span></h5>
+                </div>
+              </li>
+              <li data-aos="fade-up" data-aos-delay="300">
+               <i class="fa-solid fa-face-sad-tear" style="color:red"></i>
+                <div>
+                  <h5>Negative: <span> 21.6%</span></h5>
+                </div>
+              </li>
+            </ul> -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+ 
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+
+
+        <div class="col-lg-6 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            <strong>Phone:</strong> +1 5589 55488 55<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../static/assets/vendor/aos/aos.js"></script>
+  <script src="../static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+var xValues = ["Positive","Neutral","Negative"];
+var yValues = [59.5, 15.9, 24.6];
+var barColors = [
+  "#2DCB23",
+  "#0441FC",
+  "#EC2626",
+
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+
+  }
+});
+  </script>
+  <script>
+var xValues = [1,5,10,15,20,25,30];
+var yValues = [143,145,143,139,130,125,130];
+
+new Chart("myChart2", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+plugins: { legend: { display: false }, },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Day'
+      }
+    },
+        y: {
+      title: {
+        display: true,
+        text: 'Price'
+      }
+    }
+  }  
+  }
+});
+
+  </script>
+
+</body>
+
+</html>
