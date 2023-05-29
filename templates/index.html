@@ -71,8 +71,8 @@
           <div class="s006">
             <form method="POST" action="/about">
               <fieldset>
-                <legend class="text-white">Decide Which Technical Indicator You Should Use</legend>
-                <p class="text-white">You can get the sentiment of the stock and the investment recommendation</p>
+                <legend class="text-white">Which Technical Indicator Should I Use?</legend>
+                <p class="text-white">Decide on which technical indicator to use for a Dow Jones Industrial Average stock of your choice!</p>
                 <div class="inner-form">
                   <div class="input-field">
                    <button class="btn-search" type="submit">
@@ -80,15 +80,15 @@
                         <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                       </svg>
                     </button>
-                    <input id="search" type="text" placeholder="" value="AAPL" />
+                    <input id="search" type="text" placeholder="" value="" />
                   </div>
                 </div>
                 <div class="suggestion-wrap">
                   <span>AAPL</span>
-                  <span>TSLA</span>
                   <span>MSFT</span>
-                  <span>AMZN</span>
-                  <span>JPM</span>
+                  <span>UNH</span>
+                  <span>JNJ</span>
+                  <span>V</span>
                 </div>
               </fieldset>
       <a href="#about" class="btn-scroll mt-5" title="Scroll Down"><i class="fa-solid fa-angle-down"></i></a>
@@ -178,9 +178,9 @@
             <img src="../static/assets/img/sentiment.jpeg" class="img-fluid img2" alt="">
           </div>
           <div class="col-lg-6 content order-last  order-lg-first mt-5">
-            <h3>Sentimental Analysis</h3>
+            <h3>Sentiment Analysis</h3>
             <p>
-              To conduct a sentiment analysis of a stock, we get news titles from Google using GoogleNews(https://github.com/Iceloof/GoogleNews). After we do natural language processing of the title texts, we get the polarity scores of the titles usign NLTK.
+              Sentiment analysis is the automated process of converting emotional tones or sentiments expressed in a given text into polarity scores. This website takes news article titles from Google News as a source of its sentiment analysis and finds their average polarity scores.
             </p>
 
 
@@ -205,7 +205,6 @@
               </li>
             </ul>
              <p>
-              Then, we compare the performances of the strategies in the different sentiment categories.
             </p>
           </div>
         </div>
@@ -263,8 +262,8 @@
                   <img src="../static/assets/img/team/team-3.jpg" class="img-fluid img2" alt="">
               </div>
               <div class="col-md-6 ">
-                <h3 class="mt-5">Hello, My name is Scott Kim</h3>
-                  <p>Introducing yourself can be one of the interesting as well as the most tricky task in itself. We all are unique and writing about ourselves is an essential aspect to discover our qualities more reliably. Discovering our qualities helps us a lot to know about ourselves. It is an essential element of building up one’s personality. Although, sharing them with the world is a matter of capability.Introducing yourself can be one of the interesting as well as the most tricky task in itself. We all are unique and writing about ourselves is an essential aspect to discover our qualities more reliably. Discovering our qualities helps us a lot to know about ourselves. It is an essential element of building up one’s personality. Although, sharing them with the world is a matter of capability.</p>
+                <h3 class="mt-5"></h3>
+                  <p> Hoseok Ahn is a student currently attending Asia Pacific International School, with a keen interest in the field of finance. Apart from his academic pursuits, Hoseok has also undertaken independent research to develop and publish a website related to his area of interest. With his dedication and passion for finance, Hoseok aims to contribute to the field and explore new opportunities in the future.</p>
                   <p></p>
               </div>
                   
@@ -321,7 +320,7 @@
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    News title sentiments are important to technical analysis as they help point out different sentimental contexts for information, which influence technical analysis performances. 
+                    News title sentiments are important to technical analysis as they help point out different sentiment contexts for information, which influence technical analysis performances. 
                   </div>
                 </div>
                 
