@@ -225,7 +225,8 @@
               </div>
               <div class="col-md-6 ">
                 <h3 class="mt-5">Backtesting</h3>
-                  <p>We calculate how much profit the strategies would have made given a stock and time range through a backtesting simulation based on the stock's historical data. We compare the results by visualizing the profits in line graph. Also, we randomly sample 50 stocks from S&P 500, select a random range of time between 2012 and 2022, and calculate the average profit of the strategies. The average profit is compared using bar graph, and calculating p-value can indicate whether the differences in means are statistically significant.</p>
+                  <p>
+Backtesting is a tool used by traders to evaluate the profitability of a trading strategy. It involves simulating the performance of multiple trading strategies in a historical market data to assess how the strategies would have fared in the past. </p>
                   <p></p>
               </div>
                   
@@ -237,8 +238,8 @@
                   <img src="../static/assets/img/1-5.png" class="img-fluid img2" alt="">
               </div>
               <div class="col-md-6 ">
-                <h3 class="mt-5">Bullish and Bearish</h3>
-                  <p>We compare the strategies in bullish and bearish periods, and find out that the strategies outperform the benchmark (buy-and-hold strategy) in a bearish market, but not as profitable in a bullish market.</p>
+                <h3 class="mt-5"></h3>
+                  <p></p>
                   <p></p>
               </div>
                   
@@ -302,7 +303,7 @@
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Using the Natural Language Tool Kit (NLTK), this website first tokenizes words included in news article titles collected from Google News. This process separates all words from news articles. Then, the website removes stop words. The stop words are negligible words that do not convey any sentiment, such as 'is' and 'a. After removing stop words, the analysis proceeds to lemmatization. This process combines words with the same roots. It ensures that the sentiment analyzer does not process overlapping meanings in the next step. Next, this website uses the Sentiment Intensity Analyzer from NLTK to assign news titles polarity scores between -1 and 1. Finally, based on the polarity scores, news title sentiments are either regarded as negative, neutral, or positive. 
+                    First, this website collects news article titles from Google News on a specific DJIA stock. Second, it uses the the Natural Language Tool Kit (NLTK) to tokenizes words included in news article titles collected from Google News. This process separates all words from news articles. Third, the website removes stop words, which are negligible words that do not convey any sentiment, such as 'is' and 'a. Fourth, the website lemmatizes the remaining words, which combines words with the same roots. This ensures that the sentiment analyzer does not process overlapping meanings in the next step. Finally, this website uses the Sentiment Intensity Analyzer from NLTK to assign news titles polarity scores between -1 and 1. That's how this website quantitatively expresses news title sentiments.
 
                   </div>
                 </div>
@@ -323,7 +324,21 @@
                     News title sentiments are important to technical analysis as they help point out different sentiment contexts for information, which influence technical analysis performances. 
                   </div>
                 </div>
-                
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Why should I use technical analysis?
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    The purpose of technical analysis is to interpret current price movements to predict future price movements based on historical market trends.  
+                  </div>
+                </div>
+              
+
+
 
               </div><!-- # Faq item-->
 
@@ -349,8 +364,8 @@
         <div class="col-lg-6 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
+            <strong>Phone:</strong> +82 010 5216 2418<br>
+            <strong>Email:</strong> ahnhoseok966@gmail.com<br>
           </p>
 
         </div>
