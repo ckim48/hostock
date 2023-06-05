@@ -2202,7 +2202,7 @@ section {
   top:-30px;
 }
 .head-top{
-  margin-top:120px !important;
+  margin-top:100px !important;
   font-size: 38px !important;
     margin-bottom: 70px !important;
 
@@ -2210,4 +2210,19 @@ section {
 .head-top2{
   margin-top:-90px !important;
   margin-bottom: 70px !important;
+}
+.me-6{
+  margin-right:120px !important;
+}
+.sen-val{
+  margin-left: 250px;
+}
+.sen-val2{
+  margin-left: 265px;
+}
+.sen-val3{
+  margin-left: 260px;
+}
+.text-left{
+  text-align: left;
 }
