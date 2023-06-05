@@ -311,6 +311,7 @@ section {
 .header .logo h1 {
   font-size: 30px;
   margin: 0;
+  margin-left: -30px !important;
   font-weight: 700;
   color: white;
   font-family: var(--font-primary);
@@ -2025,6 +2026,13 @@ section {
   text-align: center;
 
 }
+.s006 form p{
+  font-size: 40px !important;
+  color: #fff;
+  font-weight: 800;
+/*  text-align: center;*/
+
+}
 .s006 p{
   text-align: center;
 }
@@ -2032,12 +2040,12 @@ section {
 .s006 form .inner-form {
   width: 100%;
   margin-bottom: 17px;
-  margin-top: -50px;
+  margin-top: -70px !important;
 }
 
 .s006 form .inner-form .input-field {
-  height: 50px;
-  width: 100%;
+  height: 35px;
+  width: 90%;
   position: relative;
 }
 
@@ -2074,7 +2082,14 @@ section {
   box-shadow: none;
   outline: 0;
 }
-
+#search{
+  font-size: 14px;
+  color:#9aa0a6;
+}
+#search::placeholder{
+  font-size: 14px;
+  color:#9aa0a6;
+}
 .s006 form .inner-form .input-field .btn-search {
   width: 70px;
   display: -ms-flexbox;
@@ -2111,17 +2126,19 @@ section {
 }
 
 .s006 form .suggestion-wrap {
+    margin-top: -2px !important;
   padding: 0 15px;
 }
 
 .s006 form .suggestion-wrap span {
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'Helvetica', sans-serif;
   display: inline-block;
   background: rgba(255, 255, 255, 0.6);
   padding: 0 15px;
   line-height: 32px;
   color: black;
+
   border-radius: 16px;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -2182,8 +2199,15 @@ section {
 }
 .second-h{
   position: relative;
-  top:-26px;
+  top:-30px;
 }
 .head-top{
   margin-top:120px !important;
+  font-size: 38px !important;
+    margin-bottom: 70px !important;
+
+}
+.head-top2{
+  margin-top:-90px !important;
+  margin-bottom: 70px !important;
 }
