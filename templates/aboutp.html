@@ -5,14 +5,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>AHN ANALYSIS</title>
+  <title>Technical Indicator Finder</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="../static/assets/img/favicon.png" rel="icon">
   <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +42,7 @@
       <a href="/" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="text-blue">AHN ANALYSIS</h1>
+        <h1 class="text-blue">Technical Indicator Finder</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -66,12 +68,12 @@
 <section id="service" class="aboutme service pt-0 mt-5">
   <div class="container mt-5" data-aos="fade-up">
     <div class="row gy-4">
-      <div class="col-lg-6 position-relative align-self-start order-lg-last order-first mt-5 d-flex align-items-center justify-content-center">
+      <div class="col-lg-4 position-relative align-self-start order-lg-last order-first mt-5">
         <img src="../static/assets/img/chrisahn.jpg" class="img-fluid img2 mx-auto" alt="">
       </div>
-      <div class="col-lg-6 content order-lg-first order-last mt-5">
-        <h3>About Hoseok Ahn</h3>
-        <p>
+      <div class="col-lg-8 content order-lg-first order-last mt-5">
+        <h3 class="ms-6">About Hoseok Ahn</h3>
+        <p class="ms-6">
 Hoseok Ahn is a student currently attending Asia Pacific International School, with a keen interest in the field of finance. Apart from his academic pursuits, Hoseok has also undertaken independent research to develop and publish a website related to his area of interest. With his dedication and passion for finance, Hoseok aims to contribute to the field and explore new opportunities in the future.
         </p>
       </div>
@@ -87,70 +89,7 @@ Hoseok Ahn is a student currently attending Asia Pacific International School, w
     <section id="faq" class="faq">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-header">
-          <span>Frequently Asked Questions</span>
-          <h2>Frequently Asked Questions</h2>
 
-        </div>
-
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-10">
-
-            <div class="accordion accordion-flush" id="faqlist">
-
-              <div class="accordion-item">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    How are news titles sentiments determined? 
-                  </button>
-                </h3>
-                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    First, this website collects news article titles from Google News on a specific DJIA stock. Second, it uses the the Natural Language Tool Kit (NLTK) to tokenizes words included in news article titles collected from Google News. This process separates all words from news articles. Third, the website removes stop words, which are negligible words that do not convey any sentiment, such as 'is' and 'a. Fourth, the website lemmatizes the remaining words, which combines words with the same roots. This ensures that the sentiment analyzer does not process overlapping meanings in the next step. Finally, this website uses the Sentiment Intensity Analyzer from NLTK to assign news titles polarity scores between -1 and 1. That's how this website quantitatively expresses news title sentiments.
-
-                  </div>
-                </div>
-
-
-              </div><!-- # Faq item-->
-
-
-              <div class="accordion-item">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    Why are news title sentiments important to technical analysis?
-                  </button>
-                </h3>
-                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    News title sentiments are important to technical analysis as they help point out different sentiment contexts for information, which influence technical analysis performances. 
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    Why should I use technical analysis?
-                  </button>
-                </h3>
-                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    The purpose of technical analysis is to interpret current price movements to predict future price movements based on historical market trends.  
-                  </div>
-                </div>
-
-
-              </div><!-- # Faq item-->
-
-
-
-            </div>
-
-          </div>
-        </div>
 
       </div>
     </section><!-- End Frequently Asked Questions Section -->

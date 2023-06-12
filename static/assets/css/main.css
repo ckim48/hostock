@@ -607,10 +607,22 @@ section {
     z-index: 9996;
   }
 }
+.ms-8{
+  margin-left: 5rem;
+}
+.myf{
+  font-family: 'Black Han Sans', sans-serif !important;
+}
+.pe-8{
+  padding-right:7rem;
+}
+.back-mar{
+  margin-left: -40px;
+}
 .about img{
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 65%;
+  margin-top: 30px;
+  margin-left: 105px;
 }
 .service img{
   width: 75%;
@@ -834,8 +846,16 @@ font-weight: 700;
   height: 100%;
 }
 .aboutme img{
-  width:70%;
-  height:400px;
+  width: 175px;
+  height:200px;
+  margin-left: 10px;
+/*  margin-left: -10px !important;*/
+/*  padding-left: 45px;*/
+}
+.ms-6{
+  margin-left:213px;
+  padding-left: 25px;
+  padding-right: 100px;
 }
 .services .card .card-img {
   overflow: hidden;
