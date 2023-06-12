@@ -317,6 +317,35 @@ section {
   font-family: var(--font-primary);
 }
 
+
+.header2 {
+  transition: all 0.5s;
+  z-index: 997;
+      background: rgba(33,33,33, 0.85);
+  padding: 18px 0;
+}
+
+.header2.sticked {
+  color:black;
+  background: rgba(33,33,33, 0.85);
+  padding: 15px 0;
+  box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
+}
+
+.header2 .logo img {
+  max-height: 40px;
+  margin-right: 6px;
+}
+
+.header2 .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  margin-left: -30px !important;
+  font-weight: 700;
+  color: white;
+  font-family: var(--font-primary);
+}
+
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
@@ -578,7 +607,22 @@ section {
     z-index: 9996;
   }
 }
-
+.about img{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.service img{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.service h3{
+font-weight: 700;
+    font-size: 32px;
+    font-family: var(--font-secondary);
+    color: #001f8d;
+}
 /*--------------------------------------------------------------
 # Featured Services Section
 --------------------------------------------------------------*/
@@ -789,7 +833,10 @@ section {
   border-radius: 0;
   height: 100%;
 }
-
+.aboutme img{
+  width:70%;
+  height:400px;
+}
 .services .card .card-img {
   overflow: hidden;
   margin-bottom: 15px;
@@ -1766,8 +1813,11 @@ section {
 
 .hero .container {
   position: relative;
-  padding-top: 74px;
+  padding-top: -74px;
   text-align: center;
+/*  height:300px;*/
+/*  height: 300px; /* Set a fixed height for the container */
+/*  overflow: hidden; /* Hide*/
 }
 
 
@@ -2000,6 +2050,7 @@ section {
 
 .s006 {
   min-height: 100vh;
+/*  height:300px;*/
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -2125,6 +2176,26 @@ section {
   fill: #666;
 }
 
+.s006 form .suggestion-wrap2 {
+  display: none;
+    margin-top: -2px !important;
+  padding: 0 15px;
+}
+
+.s006 form .suggestion-wrap2 span {
+  font-size: 12px;
+  font-family: 'Helvetica', sans-serif;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0 15px;
+  line-height: 32px;
+  color: black;
+
+  border-radius: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 .s006 form .suggestion-wrap {
     margin-top: -2px !important;
   padding: 0 15px;
@@ -2165,6 +2236,8 @@ section {
   padding: 15px;
 }
 .btn-scroll {
+  cursor: pointer;
+
   transition: 0.4s;
   color: rgba(255, 255, 255, 0.6);
   animation: up-down 1s ease-in-out infinite alternate-reverse both;
