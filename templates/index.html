@@ -83,19 +83,13 @@
                   <span>V</span>
                 </div>
                             <div class="suggestion-wrap2" id="suggestion-wrap">
-              <span>AAPL</span>
-              <span>MSFT</span>
-              <span>UNH</span>
-              <span>JNJ</span>
-              <span>V</span>
+              <span>JPM</span>
+              <span>WMT</span>
+              <span>PG</span>
+              <span>CVX</span>
+              <span>HD</span>
             </div>
-            <div class="suggestion-wrap2" id="suggestion-wrap">
-              <span>AAPL</span>
-              <span>MSFT</span>
-              <span>UNH</span>
-              <span>JNJ</span>
-              <span>V</span>
-            </div>
+
       <a class="btn-scroll mt-5" title="Scroll Down" id="scroll-down-btn"><i class="fa-solid fa-angle-down"></i></a>
                   </form>
 
@@ -117,13 +111,13 @@
 
         <div class="row gy-4">
           <div class="content">
-                      <h3 class="mt-5">Technical Indicators and Benchmark</h3>
-            <p>
+                      <h3 class="mt-5 px-52">Technical Indicators and Benchmark</h3>
+            <p class="px-52">
               This website offers information on five technical indicators: Stochastic Relative Strength Index (RSI), Moving Average Convergence/Divergence (MACD), MACD Breakout, Breakout, and Bollinger-Band. Each indicator is briefly explained below, along with details on the Benchmark.
             </p>
           </div>
           <div class="col-lg-6 content mt-5">
-              <ul>
+              <ul class="ps-52">
                 <li data-aos="fade-up" data-aos-delay="100">
                 <i class="bi bi-diagram-3"></i>
                 <div>
@@ -148,27 +142,27 @@
               </ul>
           </div>
           <div class="col-lg-6 content mt-5">
-
-            <ul>
+ 
+            <ul class="pe-5">
               <li data-aos="fade-up" data-aos-delay="100">
                 <i class="bi bi-diagram-3"></i>
                 <div>
                   <h5>Stochastic Relative Strength Index (RSI)</h5>
-                  <p class="me-6">The Stochastic Relative Strength Index (RSI) is a technical analysis indicator that combines elements of the Stochastic Oscillator and the traditional Relative Strength Index. It provides a measure of overbought or oversold conditions in a market by considering both price momentum and RSI values. The Stochastic RSI generates signals based on the crossing of predefined levels, helping traders identify potential entry or exit points. </p>
+                  <p class="me-62">The Stochastic Relative Strength Index (RSI) is a technical analysis indicator that combines elements of the Stochastic Oscillator and the traditional Relative Strength Index. It provides a measure of overbought or oversold conditions in a market by considering both price momentum and RSI values. The Stochastic RSI generates signals based on the crossing of predefined levels, helping traders identify potential entry or exit points. </p>
                 </div>
               </li>
               <li data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-fullscreen-exit"></i>
                 <div>
                   <h5>Moving Average Convergence Divergence (MACD)</h5>
-                  <p class="me-6">The Moving Average Convergence Divergence (MACD) is a widely used technical indicator that helps traders identify potential changes in trend direction and generate buy or sell signals. It is calculated by subtracting the longer-term exponential moving average (EMA) from the shorter-term EMA. The MACD line crossing above or below the signal line is often considered a bullish or bearish signal, respectively. </p>
+                  <p class="me-62">The Moving Average Convergence Divergence (MACD) is a widely used technical indicator that helps traders identify potential changes in trend direction and generate buy or sell signals. It is calculated by subtracting the longer-term exponential moving average (EMA) from the shorter-term EMA. The MACD line crossing above or below the signal line is often considered a bullish or bearish signal, respectively. </p>
                 </div>
               </li>
               <li data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-broadcast"></i>
                 <div>
                   <h5>MACD Breakout</h5>
-                  <p class="me-6">The MACD Breakout strategy is a trading strategy that combines the MACD and the Breakout algorithms created for virtual simulations. It purports to address the weaknesses of the MACD and Breakout by combining the two together.</p>
+                  <p class="me-62">The MACD Breakout strategy is a trading strategy that combines the MACD and the Breakout algorithms created for virtual simulations. It purports to address the weaknesses of the MACD and Breakout by combining the two together.</p>
                 </div>
               </li>
 
@@ -237,7 +231,75 @@
   </div>
 </section>
 
+ <section id="faq" class="faq">
+      <div class="container" data-aos="fade-up">
 
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-10">
+
+            <div class="accordion accordion-flush" id="faqlist">
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    How are news titles sentiments determined? 
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    First, this website collects news article titles from Google News on a specific DJIA stock. Second, it uses the the Natural Language Tool Kit (NLTK) to tokenizes words included in news article titles collected from Google News. This process separates all words from news articles. Third, the website removes stop words, which are negligible words that do not convey any sentiment, such as 'is' and 'a. Fourth, the website lemmatizes the remaining words, which combines words with the same roots. This ensures that the sentiment analyzer does not process overlapping meanings in the next step. Finally, this website uses the Sentiment Intensity Analyzer from NLTK to assign news titles polarity scores between -1 and 1. That's how this website quantitatively expresses news title sentiments.
+
+                  </div>
+                </div>
+
+
+              </div><!-- # Faq item-->
+
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Why are news title sentiments important to technical analysis?
+                  </button>
+                </h3>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    News title sentiments are important to technical analysis as they help point out different sentiment contexts for information, which influence technical analysis performances. 
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Why should I use technical analysis?
+                  </button>
+                </h3>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    The purpose of technical analysis is to interpret current price movements to predict future price movements based on historical market trends.  
+                  </div>
+                </div>
+
+
+              </div><!-- # Faq item-->
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

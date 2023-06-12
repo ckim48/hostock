@@ -619,6 +619,9 @@ section {
 .back-mar{
   margin-left: -40px;
 }
+.ps-52{
+  padding-left: 6rem !important;
+}
 .about img{
   width: 65%;
   margin-top: 30px;
@@ -2284,6 +2287,10 @@ font-weight: 700;
 .img2{
   border-radius: 5px;
 }
+.px-52{
+  padding-left: 6rem !important;
+  padding-right: 8rem !important;
+}
 .text-red{
   color:red;
 }
@@ -2305,7 +2312,10 @@ font-weight: 700;
   margin-bottom: 70px !important;
 }
 .me-6{
-  margin-right:120px !important;
+  margin-right:10px !important;
+}
+.me-62{
+  margin-right:75px !important;
 }
 .sen-val{
   margin-left: 250px;
