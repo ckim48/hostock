@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>StockTicker</title>
+  <title>Technical Indicator Finder</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,24 +29,16 @@
   <!-- Template Main CSS File -->
   <link href="../static/assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis - v1.2.1
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
-<header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="text-blue">StockTicker</h1>
+        <h1 class="text-blue myf">TIF</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -54,8 +46,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-
+          <li><a href="aboutp.html">About</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -89,30 +80,7 @@
 
           </div>
           <div class="col-lg-8 content order-last  order-lg-first">
-            <h3>Sentimental Analysis</h3>
-            <p>
-              The Sentimental result on news title of AAPL from one month ago to now.
-            </p>
-            <ul>
-              <li data-aos="fade-up" data-aos-delay="100">
-                <i class="fa-solid fa-face-smile" style="color:green"></i>
-                <div>
-                  <h5 >Positive: <span> 62.5%</span></h5>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="200">
-                <i class="fa-solid fa-face-meh" ></i>
-                <div>
-                  <h5>Neutral: <span> 15.9%</span></h5>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="300">
-               <i class="fa-solid fa-face-sad-tear" style="color:red"></i>
-                <div>
-                  <h5>Negative: <span> 21.6%</span></h5>
-                </div>
-              </li>
-            </ul>
+            <h3>The sentiment of last business day is 0.33</h3>
           </div>
         </div>
 
@@ -123,44 +91,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
-          <div class="col-lg-5 position-relative align-self-start order-lg-last order-first mt-5">
-              <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
-
-          </div>
           <div class="col-lg-7 content order-last  order-lg-first">
-            <h3>Current Market Status</h3>
-            <p>
-              The market status from last 30 days to now is:
-            </p>
-              
-                            <h6>Status: <span class="ml-4 text-red">Bearish</span></h6>
-
-              <h6>RSI: <span class="ml-4 text-red">Sell Signal</span></h6>
-              <h6>MACD: <span class="ml-4 text-red">Sell Signal</span></h6>
-              <h6>Bollinger Band: <span class="text-green">Buy Signal</span></h6>
-              <h6>Sentiment: <span class="ml-4 text-green">Positive</span></h6>
-              <h3 class="text-black">Overall: <span class="ml-4 text-red">SELL</span></h3>
-            
-<!--             <ul>
-              <li data-aos="fade-up" data-aos-delay="100">
-                <i class="fa-solid fa-face-smile" style="color:green"></i>
-                <div>
-                  <h5 >Positive: <span> 62.5%</span></h5>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="200">
-                <i class="fa-solid fa-face-meh" ></i>
-                <div>
-                  <h5>Neutral: <span> 15.9%</span></h5>
-                </div>
-              </li>
-              <li data-aos="fade-up" data-aos-delay="300">
-               <i class="fa-solid fa-face-sad-tear" style="color:red"></i>
-                <div>
-                  <h5>Negative: <span> 21.6%</span></h5>
-                </div>
-              </li>
-            </ul> -->
+            <h3>The optimal indicator is MACD</h3>
           </div>
         </div>
 

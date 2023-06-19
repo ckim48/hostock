@@ -18,12 +18,6 @@ app = Flask(__name__)
 app.secret_key = b'_5#y2L'
 
 
-
-
-
-
-
-
 def macd_strategy(symbol, start, end):
     """ Backtesting simulation of macd strategy
     Parameters:
@@ -326,7 +320,9 @@ def MACD_BREAKOUT_STRATEGY(symbol, start, end, k):
 @app.route('/', methods = ['POST', 'GET'])
 def index():
 	return render_template('index.html')
-
+@app.route('/about', methods = ['POST', 'GET'])
+def about():
+    return render_template('aboutp.html')
 
 
 if __name__ == '__main__':
