@@ -323,7 +323,9 @@ def index():
 @app.route('/about', methods = ['POST', 'GET'])
 def about():
     return render_template('aboutp.html')
-
+@app.route('/concept', methods = ['POST', 'GET'])
+def concept():
+    return render_template('concept.html')
 
 if __name__ == '__main__':
 	app.run(debug = True)
