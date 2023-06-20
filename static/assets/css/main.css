@@ -726,7 +726,9 @@ font-weight: 700;
   margin-right: 20px;
   line-height: 0;
 }
-
+.col-y{
+  color :#FF9300 !important
+}
 .about .content ul h5 {
   font-size: 18px;
   font-weight: 700;
