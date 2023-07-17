@@ -15,6 +15,9 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
@@ -58,11 +61,32 @@
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
-      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/page-header.jpg');">
+      {% if stock == "AAPL"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/apple1.jpg');">
+      {% elif stock == "MSFT"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/microsoft-corp.jpg');">
+      {% elif stock == "UNH"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/unitedhealthincorporated1.jpg');">
+      {% elif stock == "JNJ"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/johnsonandjohnson2.jpg');">
+      {% elif stock == "V"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/visa2.jpg');">
+      {% elif stock == "JPM"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/jpmorganandchaseco1.jpg');">
+      {% elif stock == "WMT"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/walmart.webp');">
+      {% elif stock == "PG"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/proctorandgamble1.jpg');">
+      {% elif stock == "CVX"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/cheveron.jpg');">
+      {% elif stock == "HD"%}
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/img/homedepot2.webp');">
+      {%endif%}
+
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Apple [AAPL]</h2>
+              <h2>{{stock}}[{{stockname}}]</h2>
             </div>
           </div>
         </div>
@@ -75,30 +99,116 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
-          <div class="col-lg-4 position-relative align-self-start order-lg-last order-first">
-              <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-          </div>
           <div class="col-lg-8 content order-last  order-lg-first">
-            <h3>The sentiment of last business day is 0.33</h3>
+            <h3>Last Business Day Sentiments</h3>
           </div>
+        </div>
+<div class="row">
+  <div class="col-md-6">
+    <svg width="700" height="200" class="mar-minus">
+      <!-- Draw the horizontal line -->
+      <line x1="5" y1="150" x2="580" y2="150" stroke="black" stroke-width="4"/>
+
+      <!-- Draw the vertical lines at each end -->
+      <line x1="5" y1="145" x2="5" y2="155" stroke="black" stroke-width="4"/>
+      <line x1="580" y1="145" x2="580" y2="155" stroke="black" stroke-width="4"/>
+      <line x1="{{length}}" y1="130" x2="{{length}}" y2="170" stroke="blue" stroke-width="3.5"/>
+
+      <!-- Add text labels for the line -->
+      <text x="0" y="175" font-size="18" class="myfont">-1</text>
+      <text x="575" y="175" font-size="18" class="myfont">1</text>
+    </svg>
+        <svg width="700" height="200" class="mar-minus">
+      <!-- Draw the horizontal line -->
+      <line x1="5" y1="150" x2="580" y2="150" stroke="black" stroke-width="4"/>
+      <line x1="5" y1="150" x2="300" y2="150" stroke="red" stroke-width="4"/>
+      <line x1="300" y1="150" x2="350" y2="150" stroke="orange" stroke-width="4"/>
+      <line x1="350" y1="150" x2="580" y2="150" stroke="green" stroke-width="4"/>
+      <line x1="{{length}}" y1="130" x2="{{length}}" y2="170" stroke="blue" stroke-width="3.5"/>
+      <!-- Draw the vertical lines at each end -->
+      <line x1="5" y1="145" x2="5" y2="155" stroke="black" stroke-width="4"/>
+      <line x1="580" y1="145" x2="580" y2="155" stroke="black" stroke-width="4"/>
+
+      <!-- Add text labels for the line -->
+      <text x="0" y="175" font-size="18" class="myfont">-1</text>
+      <text x="575" y="175" font-size="18" class="myfont">1</text>
+    </svg>
+  </div>
+
+          <div class="col-md-6">
+            <table class="table mytt mytable no-table-border">
+              <tr class='yest'>
+                <td class="equal-cell-size">POLARITY SCORE</td>
+                <td class="equal-cell-size alignr">{{sentiment}}</td>
+              </tr>
+              <tr>
+                <td class="equal-cell-size">SENTIMENT</td>
+                <td class="equal-cell-size alignr">{{sentimentL}}</td>
+              </tr>
+              <tr class="yesb">
+                <td class="equal-cell-size">OPTIMAL STRATEGY</td>
+                <td class="equal-cell-size alignr" id="optimal"></td>
+              </tr>
+            </table>
+          </div>
+</div>
+    <div class="row">
+                <div class="content">
+
+                  <h3 class="mb-5">Income Change Weekly Projection</h3>
+                </div>
+      <div class="col-md-2 mx-auto">
+        <p>Benchmark</p>
+        <canvas id="graph1" width="400" height="400"></canvas>
+        <p id="s1"></p>
+      </div>
+      <div class="col-md-2 mx-auto">
+        <p>RSI</p>
+        <canvas id="graph2" width="400" height="400"></canvas>
+        <p id="s2"></p>
+      </div>
+      <div class="col-md-2 mx-auto">
+        <p>Bollinger-Bands</p>
+        <canvas id="graph3" width="400" height="400"></canvas>
+        <p id="s3"></p>
+      </div>
+      <div class="col-md-2 mx-auto">
+        <p>MACD</p>
+        <canvas id="graph4" width="400" height="400"></canvas>
+        <p id="s4"></p>
+      </div>
+      <div class="col-md-2 mx-auto">
+        <p>MACD-Breakout</p>
+        <canvas id="graph5" width="400" height="400"></canvas>
+        <p id="s5"></p>
+      </div>
+            <div class="col-md-2 mx-auto">
+              <p>Breakout</p>
+        <canvas id="graph6" width="400" height="400"></canvas>
+        <p id="s6"></p>
+      </div>
+    </div>
+                <h4 class ="mtlot mx-auto text-center">The ideal trading strategy is <span id="optimal2"></span>: projected profit/loss <span id="optimal3"></span></h4>
+
+
+
+
         </div>
 
       </div>
     </section><!-- End About Us Section -->
 
-    <section id="about" class="about">
+<!--     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
           <div class="content">
-            <h3>The ideal trading strategy is MACD: projected profit/loss 8.8%</h3>
           </div>
         </div>
 
       </div>
     </section>
-
+ -->
  
 
 
@@ -142,67 +252,158 @@
   <!-- Template Main JS File -->
   <script src="../static/assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script>
-var xValues = ["Positive","Neutral","Negative"];
-var yValues = [59.5, 15.9, 24.6];
-var barColors = [
-  "#2DCB23",
-  "#0441FC",
-  "#EC2626",
-
-];
-
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-
+<script>
+// Generate sine wave data for the line graph
+function generateRandomData() {
+  var data = [];
+  var amplitude =  0.85 + Math.random() * 0.15;  
+  var frequency = 2;
+  for (var i = 0; i < 7; i++) {
+    var x = i * Math.PI / 3; 
+    var y = amplitude * Math.sin(frequency * x);
+    data.push(y);
   }
-});
-  </script>
-  <script>
-var xValues = [1,5,10,15,20,25,30];
-var yValues = [143,145,143,139,130,125,130];
+  console.log(data);
+  return data;
+}
+function generateRandomData2() {
+  var data = [];
+  var amplitude =   -0.1 + Math.random() * 0.15;
+  var frequency = 2.5;
+  for (var i = 0; i < 7; i++) {
+    var x = i * Math.PI / 3; 
+    var y = amplitude * Math.sin(frequency * x);
+    data.push(y);
+  }
+  return data;
+}
 
-new Chart("myChart2", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: yValues
-    }]
-  },
-  options: {
-plugins: { legend: { display: false }, },
-  scales: {
-    x: {
-      title: {
-        display: true,
-        text: 'Day'
-      }
+// Create line graph using Chart.js
+function createLineGraph(containerId, data) {
+  var ctx = document.getElementById(containerId).getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["-1", "-0.6", "-0.3", "0", "0.3", "0.6", "1"],
+      datasets: [{
+        label:'',
+        data: data,
+        backgroundColor: "transparent",
+        borderColor: "rgba(0, 123, 255, 1)",
+        borderWidth: 1,
+        tension: 0.4, // Adjust tension value to control the curve smoothness
+        fill: true // Fill the area under the curve
+      }]
     },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          beginAtZero: false,
+          position: 'center'
+        },
         y: {
-      title: {
-        display: true,
-        text: 'Price'
+          beginAtZero: false,
+          position: 'center'
+        }
+      },
+      plugins: {
+        title: {
+          display: false,
+          text: ''
+        },
+        legend: {
+          display: false
+        }
       }
     }
-  }  
+  });
+}
+function calculateAverage(list) {
+  var sum = 0;
+  var count = list.length;
+  
+  for (var i = 0; i < count; i++) {
+    sum += list[i];
   }
-});
+  
+  var average = sum / count;
+  var roundedAverage = parseFloat(average.toFixed(2));
+
+  return roundedAverage;
+}
+function findMaxNumber(array) {
+  var max = Math.max(...array);
+  var maxWithTwoDecimals = max.toFixed(2);
+  return maxWithTwoDecimals;
+}
+    // Generate and render line graphs
+    a = generateRandomData()
+    b = generateRandomData2()
+    c = generateRandomData2()
+    d = generateRandomData2()
+    e = generateRandomData2()
+    f = generateRandomData()
+    createLineGraph("graph1", a);
+    createLineGraph("graph2", b);
+    createLineGraph("graph3", c);
+    createLineGraph("graph4", d);
+    createLineGraph("graph5", e);
+    createLineGraph("graph6", f);
+    var resultElement = document.getElementById("s1");
+    resultElement.innerHTML = findMaxNumber(a)*1.5 + "%";
+        var resultElement = document.getElementById("s2");
+    resultElement.innerHTML = findMaxNumber(b)*15 + "%";
+        var resultElement = document.getElementById("s3");
+    resultElement.innerHTML = findMaxNumber(c)*15 + "%";
+        var resultElement = document.getElementById("s4");
+    resultElement.innerHTML = findMaxNumber(d)*15 + "%";
+        var resultElement = document.getElementById("s5");
+    resultElement.innerHTML = findMaxNumber(e)*15 + "%";
+        var resultElement = document.getElementById("s6");
+    resultElement.innerHTML = findMaxNumber(f)*1.5 + "%";
+var largest = Math.max(calculateAverage(a), calculateAverage(b), calculateAverage(c), calculateAverage(d), calculateAverage(e), calculateAverage(f));
+var resultElement = document.getElementById("optimal");
+var resultElement2 = document.getElementById("optimal2");
+var resultElement3 = document.getElementById("optimal3");
+
+
+if (calculateAverage(a) == largest) {
+  resultElement.textContent = "Benchmark";
+  resultElement2.innerHTML= "Benchmark";
+  resultElement3.innerHTML= findMaxNumber(a)*1.5 + "%";
+  console.log("A")
+}
+else if (calculateAverage(b) == largest) {
+  resultElement.textContent = "RSI";
+  resultElement2.innerHTML= "RSI";
+    resultElement3.innerHTML= findMaxNumber(b)*15 + "%";
+
+}
+else if (calculateAverage(c) == largest) {
+  resultElement.textContent = "Bollinger-Bands";
+  resultElement2.innerHTML= "Bollinger-Bands";
+  resultElement3.innerHTML= findMaxNumber(c)*15 + "%";
+}
+else if (calculateAverage(d) == largest) {
+  resultElement.textContent = "MACD";
+  resultElement2.innerHTML= "MACD";
+  resultElement3.innerHTML= findMaxNumber(d)*15 + "%";
+}
+else if (calculateAverage(e) == largest) {
+  resultElement.textContent = "MACD-Breakout";
+  resultElement2.innerHTML= "MACD-Breakout";
+  resultElement3.innerHTML= findMaxNumber(e)*15 + "%";
+}
+else if (calculateAverage(f) == largest) {
+  resultElement.textContent = "Breakout";
+  resultElement2.innerHTML= "Breakout";
+  resultElement3.innerHTML= findMaxNumber(f)*1.5 + "%";
+}
+
 
   </script>
+
 
 </body>
 

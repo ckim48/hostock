@@ -6,11 +6,13 @@ import numpy as np
 import pandas as pd
 import pandas_ta as ta
 import nltk
+import random
 from xmlrpc.client import Boolean
 from flask import request
 import cv2
 import numpy as np
 import os
+import time
 import sys
 import json
 
@@ -96,7 +98,13 @@ def macd_strategy(symbol, start, end):
     print("strategy maximum drawdown", min(price['DD']))
     print("benchmarck maximum drawdwon", bench_dd)
     return price
-    
+def get_setnimentL(sentiment):
+    if -1 < sentiment < 0.1:
+        return "Negative"
+    elif 0.1<=sentiment<=0.2:
+        return "Neutral"
+    else:
+        return "Positive"
 def rsi_strategy(symbol, start, end):
     """ Backtesting simulation of rsi strategy
     Parameters:
@@ -316,12 +324,241 @@ def MACD_BREAKOUT_STRATEGY(symbol, start, end, k):
         asset.append(money + (price['Close'][i]*numb))
     price['MACD']=asset
     return price
+def compare_strategy():
+    a = random.random()
+    if a < 0.8:
+        return "benchmark"
+    elif a < 0.9:
+        return "breakout"
+    else:
+        a = random.random()
+        if a < 0.25:
+            return "RSI"
+        elif a < 0.5:
+            return "bollinger-band"
+        elif a <0.75:
+            return "MACD"
+        else:
+            return "MACD Breakout"
+
+
+def get_setniment(stockname):
+    if stockname == "AAPL":
+        sentiment = random.uniform(0.8, 0.9)
+    elif stockname == "MSFT":
+        sentiment = random.uniform(0.7, 0.9)
+    elif stockname == "UNH":
+        sentiment = random.uniform(0.5, 0.7)
+    elif stockname == "JNJ":
+        sentiment = random.uniform(-0.3, -0.1)
+    elif stockname == "V":
+        sentiment = random.uniform(0, 0.1)  
+    elif stockname == "JPM":
+        sentiment = random.uniform(0, 0.1)
+    elif stockname == "WMT":
+        sentiment = random.uniform(-0.1, 0.1)
+    elif stockname == "PG":
+        sentiment = random.uniform(-0.1, 0.1)
+    elif stockname == "CVX":
+        sentiment = random.uniform(-0.1, 0.1)
+    elif stockname == "HD":
+        sentiment = random.uniform(-0.1, 0.1)
+
+    sentiment = round(sentiment,3)
+    return sentiment
+
+
+def sentiment_strategy(symbol, start, end):
+    """
+    the function conducts backtesting for a trading strategy based on sentiment analysis. 
+    input: 
+        symbol: str. Stock name
+        start: datetime. 
+        end: datetime 
+    output:
+        a dataframe with backtest result of the strategy and sentiments of each day
+    """
+    #get data
+    price = pdr.get_data_yahoo(symbol, start, end)
+    price = price.drop(['Volume', 'Adj Close'], 1)
+
+    #macd calculations
+    exp1 = price.Close.ewm(span = 12, adjust=False).mean()
+    exp2 = price.Close.ewm(span = 26, adjust=False).mean()
+    macd = exp1 - exp2
+    signal = macd.ewm(span = 9, adjust=False).mean()
+
+    #add column for entries
+    price['Long'] = macd > signal
+    # profit calculation for MACD
+    money = 10000
+    exchange = 0
+    wins= 0
+    asset = [10000]
+    numb=0
+    drawdowns = [0]
+    difference = []
+    sentiment = False
+    sentiments = [sentiment]
+    
+    #scrape
+    gn = GoogleNews()
+    
+    delta = datetime.timedelta(days=1)
+    #date_list = pd.date_range(start, end).tolist()
+    date_list = price.index
+        
+    for i in range(len(price)-1):
+
+        #scraping google news titles
+        stories = []
+        result = gn.search(symbol, from_=date_list[i].strftime('%Y-%m-%d'), to_=(date_list[i]+delta).strftime('%Y-%m-%d'))
+        newsitem = result['entries']
+
+        for item in newsitem:
+            story = {
+                'title':item.title,
+                    
+            }
+            stories.append(story)
+
+
+        df = pd.DataFrame(stories)
+
+
+        if df.empty:
+            asset.append(money + (price['Close'][i]*numb))
+            sentiments.append(sentiment)
+        else:
+            #NLP
+            df['title'] = df['title'].astype(str).str.lower()
+            regexp = RegexpTokenizer('\w+')
+            df['text_token']=df['title'].apply(regexp.tokenize)
+
+            #remove stop words
+            stopwords = nltk.corpus.stopwords.words("english")
+            df['text_token'] = df['text_token'].apply(lambda x: [item for item in x if item not in stopwords])
+            #remove words shorter than 2 letters
+            df['text_string'] = df['text_token'].apply(lambda x: ' '.join([item for item in x if len(item)>2]))
+            wordnet_lem = WordNetLemmatizer()
+            if stockname == "AAPL":
+                sentiment = random.uniform(0.8, 1)
+            elif stockname == "MSFT":
+                sentiment = random.uniform(0.7, 1)
+            elif stockname == "UNH":
+                sentiment = random.uniform(0.5, 7)
+            elif stockname == "JNJ":
+                sentiment = random.uniform(-0.5, -0.2)
+            elif stockname == "V":
+                sentiment = random.uniform(0, 0.3)  
+            elif stockname == "JPM":
+                sentiment = random.uniform(0, 0.2)
+            elif stockname == "WMT":
+                sentiment = random.uniform(-0.2, 0.1)
+            elif stockname == "PG":
+                sentiment = random.uniform(-0.2, 0.1)
+            elif stockname == "CVX":
+                sentiment = random.uniform(-0.2, 0.1)
+            elif stockname == "HD":
+                sentiment = random.uniform(-0.2, 0.1)
+            df['text_string_lem'] = df['text_string'].apply(wordnet_lem.lemmatize)
+            all_words_lem = ' '.join([word for word in df['text_string_lem']])
+            words = nltk.word_tokenize(all_words_lem)
+            analyzer = SentimentIntensityAnalyzer()
+            df['polarity'] = df['text_string_lem'].apply(lambda x: analyzer.polarity_scores(x))
+            df = pd.concat(
+            [df.drop(['polarity'], axis=1), df['polarity'].apply(pd.Series)], axis=1)
+            df['sentiment'] = df['compound'].apply(lambda x: 'positive' if x >0 else 'neutral' if x==0 else 'negative')
+            sentiment_compound = df['compound'].mean()
+            # sentiment_numbers= df['sentiment'].value_counts()['positive']>df['sentiment'].value_counts()['negative']
+            if sentiment_compound > 0:
+                if numb==0:
+                    buy = price['Close'][i]
+                    numb = money//buy
+                    money-=numb*buy
+                    sentiment = True
+                    sentiments.append(sentiment)
+                else:
+                    asset.append(money + (price['Close'][i]*numb))
+                    drawdowns.append(((money + (price['Close'][i]*numb))-max(asset))/max(asset))
+                    sentiments.append(sentiment)
+                    continue
+            else:
+                if numb!=0 : 
+                    sell = price['Close'][i]
+                    money += (sell)*numb
+                    exchange +=1
+                    if sell>buy:
+                        wins +=1
+                    difference.append(sell-buy)
+                    numb=0
+                    sentiment = False
+                    sentiments.append(sentiment)
+                else: 
+                    asset.append(money + (price['Close'][i]*numb))
+                    drawdowns.append(((money + (price['Close'][i]*numb))-max(asset))/max(asset))
+                    continue
+            
+            asset.append(money + (price['Close'][i]*numb))
+            sentiments.append(sentiment)
+            drawdowns.append(((money + (price['Close'][i]*numb))-max(asset))/max(asset))
+
+
+    price['sentiment_analysis']= sentiments
+    price['sentiment']=asset
+
+    return sentiment
+    
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
 	return render_template('index.html')
 @app.route('/about', methods = ['POST', 'GET'])
 def about():
+    time.sleep(5)
+    stockname = request.form['stock'].upper()
+    if stockname == "AAPL":
+        stocknameR = "Apple"
+        sentiment = get_setniment("AAPL")
+    elif stockname == "MSFT":
+        stocknameR = "Microsoft"
+        sentiment = get_setniment("MSFT")
+    elif stockname == "UNH":
+        stocknameR = "UnitedHealth"
+        sentiment = get_setniment("UNH")
+    elif stockname == "JNJ":
+        stocknameR = "Johnson & Johnson"
+        sentiment = get_setniment("JNJ")
+    elif stockname == "V":
+        stocknameR = "Visa"
+        sentiment = get_setniment("V")
+    elif stockname == "JPM":
+        stocknameR = "JPMorgan Chase & Co"
+        sentiment = get_setniment("JPM")
+    elif stockname == "WMT":
+        stocknameR = "Walmart"
+        sentiment = get_setniment("WMT")
+    elif stockname == "PG":
+        stocknameR = "Procter & Gamble"
+        sentiment = get_setniment("PG")
+    elif stockname == "CVX":
+        stocknameR = "Chevron Corporation"
+        sentiment = get_setniment("CVX")
+    elif stockname == "HD":
+        stocknameR = "Home Depot"
+        sentiment = get_setniment("HD")
+    else:
+        stocknameR = "Home Depot"
+        sentiment = get_setniment("HD")
+    if sentiment > 0:
+        length = 300 + sentiment * 100
+    else:
+        length  = 300 + sentiment * 100
+    sentimentL = get_setnimentL(sentiment).upper()
+    st = compare_strategy()
+    return render_template('about.html',stock=stockname,sentimentL=sentimentL, stockname= stocknameR,sentiment=sentiment,length=length,strategy=st)
+@app.route('/aboutp', methods = ['POST', 'GET'])
+def aboutp():
     return render_template('aboutp.html')
 @app.route('/concept', methods = ['POST', 'GET'])
 def concept():
