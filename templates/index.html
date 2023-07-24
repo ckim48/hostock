@@ -48,7 +48,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
-          <li><a href="{{url_for('concept')}}" class="">Concept</a></li>
+          <li><a href="{{url_for('concept')}}" >Concept</a></li>
           <li><a href="{{url_for('aboutp')}}">About</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -76,18 +76,18 @@
                   </div>
                 </div>
                 <div class="suggestion-wrap">
-                  <span>AAPL</span>
-                  <span>MSFT</span>
-                  <span>UNH</span>
-                  <span>JNJ</span>
-                  <span>V</span>
+                  <a href = "/about?param1=aapl"><span>AAPL</span></a>
+                  <a href = "/about?param1=msft"><span>MSFT</span></a>
+                  <a href = "/about?param1=unh"><span>UNH</span></a>
+                  <a href = "/about?param1=jnj"><span>JNJ</span></a>
+                  <a href = "/about?param1=v"><span>V</span></a>
                 </div>
                             <div class="suggestion-wrap2" id="suggestion-wrap">
-              <span>JPM</span>
-              <span>WMT</span>
-              <span>PG</span>
-              <span>CVX</span>
-              <span>HD</span>
+              <a href = "/about?param1=jpm"><span>JPM</span></a>
+              <a href = "/about?param1=wmt"><span>WMT</span></a>
+              <a href = "/about?param1=pg"><span>PG</span></a>
+              <a href = "/about?param1=cvx"><span>CVX</span></a>
+              <a href = "/about?param1=hd"><span>HD</span></a>
             </div>
 
       <a class="btn-scroll mt-5" title="Scroll Down" id="scroll-down-btn"><i class="fa-solid fa-angle-down"></i></a>

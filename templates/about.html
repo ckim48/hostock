@@ -48,8 +48,9 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="aboutp.html">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="{{url_for('concept')}}" >Concept</a></li>
+          <li><a href="{{url_for('aboutp')}}">About</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -86,7 +87,8 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>{{stock}}[{{stockname}}]</h2>
+              <h2>{{stock}}</h2>
+              <h3 class="myh3">[{{stockname}}]</h3>
             </div>
           </div>
         </div>
@@ -96,11 +98,21 @@
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+                        <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
           <div class="col-lg-8 content order-last  order-lg-first">
-            <h3>Last Business Day Sentiments</h3>
+            <h3>Analysis Purpose</h3>
+          </div>
+    <p class="mb-5 myppp">This website conducts a sentiment analysis of the last business day’s news title sentiments of the stock in question to forecast its five-day interday profits/losses in using the five technical indicator algorithms and the benchmark.<br></p>
+        </div>
+
+      </div>
+      <div class="container mt-3" data-aos="fade-up">
+
+        <div class="row gy-4">
+          <div class="col-lg-8 content order-last  order-lg-first">
+            <h3>Last Business Day's News Title Sentiments</h3>
           </div>
         </div>
 <div class="row">
@@ -111,11 +123,15 @@
 
       <!-- Draw the vertical lines at each end -->
       <line x1="5" y1="145" x2="5" y2="155" stroke="black" stroke-width="4"/>
+            <line x1="293" y1="145" x2="293" y2="155" stroke="black" stroke-width="4"/>
+
       <line x1="580" y1="145" x2="580" y2="155" stroke="black" stroke-width="4"/>
       <line x1="{{length}}" y1="130" x2="{{length}}" y2="170" stroke="blue" stroke-width="3.5"/>
+        <text x="{{length-18}}" y="190" font-size="18" class="myfont2">{{sentiment}}</text>
 
       <!-- Add text labels for the line -->
       <text x="0" y="175" font-size="18" class="myfont">-1</text>
+      <text x="288" y="175" font-size="18" class="myfont">0</text>
       <text x="575" y="175" font-size="18" class="myfont">1</text>
     </svg>
         <svg width="700" height="200" class="mar-minus">
@@ -125,12 +141,15 @@
       <line x1="300" y1="150" x2="350" y2="150" stroke="orange" stroke-width="4"/>
       <line x1="350" y1="150" x2="580" y2="150" stroke="green" stroke-width="4"/>
       <line x1="{{length}}" y1="130" x2="{{length}}" y2="170" stroke="blue" stroke-width="3.5"/>
+      <text x="{{length-18}}" y="190" font-size="18" class="myfont2">{{sentiment}}</text>
+
       <!-- Draw the vertical lines at each end -->
       <line x1="5" y1="145" x2="5" y2="155" stroke="black" stroke-width="4"/>
       <line x1="580" y1="145" x2="580" y2="155" stroke="black" stroke-width="4"/>
 
       <!-- Add text labels for the line -->
       <text x="0" y="175" font-size="18" class="myfont">-1</text>
+
       <text x="575" y="175" font-size="18" class="myfont">1</text>
     </svg>
   </div>
@@ -155,62 +174,119 @@
     <div class="row">
                 <div class="content">
 
-                  <h3 class="mb-5">Income Change Weekly Projection</h3>
+                  <h3 class="mb-5 mt-5">Income Change Weekly Projection</h3>
                 </div>
-      <div class="col-md-2 mx-auto">
+                
+
+      <div class="col-md-2 mx-auto my-md-2" id="c1">
         <p>Benchmark</p>
         <canvas id="graph1" width="400" height="400"></canvas>
-        <p id="s1"></p>
+        
       </div>
-      <div class="col-md-2 mx-auto">
+      <div class="col-md-2 mx-auto my-md-2" id="c2">
         <p>RSI</p>
         <canvas id="graph2" width="400" height="400"></canvas>
-        <p id="s2"></p>
+        
       </div>
-      <div class="col-md-2 mx-auto">
+      <div class="col-md-2 mx-auto my-md-2" id="c3">
         <p>Bollinger-Bands</p>
         <canvas id="graph3" width="400" height="400"></canvas>
-        <p id="s3"></p>
+        
       </div>
-      <div class="col-md-2 mx-auto">
+      <div class="col-md-2 mx-auto my-md-2" id="c4">
         <p>MACD</p>
         <canvas id="graph4" width="400" height="400"></canvas>
-        <p id="s4"></p>
+       
       </div>
-      <div class="col-md-2 mx-auto">
+      <div class="col-md-2 mx-auto my-md-2" id="c5">
         <p>MACD-Breakout</p>
         <canvas id="graph5" width="400" height="400"></canvas>
-        <p id="s5"></p>
+     
       </div>
-            <div class="col-md-2 mx-auto">
+            <div class="col-md-2 mx-auto my-md-2" id="c6">
               <p>Breakout</p>
         <canvas id="graph6" width="400" height="400"></canvas>
+        
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-md-2 mx-auto my-md-3" id="c11">
+        <p id="s1"></p>
+      </div>
+      <div class="col-md-2 mx-auto my-md-3" id="c12">
+        <p id="s2"></p>
+      </div>
+      <div class="col-md-2 mx-auto my-md-3" id="c13">
+        <p id="s3"></p>
+      </div>
+      <div class="col-md-2 mx-auto my-md-3" id="c14">
+        <p id="s4"></p>
+      </div>
+      <div class="col-md-2 mx-auto my-md-3" id="c15">
+        <p id="s5"></p>
+      </div>
+            <div class="col-md-2 mx-auto my-md-3" id="c16">
         <p id="s6"></p>
       </div>
     </div>
-                <h4 class ="mtlot mx-auto text-center">The ideal trading strategy is <span id="optimal2"></span>: projected profit/loss <span id="optimal3"></span></h4>
+
+
+                <!-- <h4 class ="mtlot mx-auto text-center">The ideal trading strategy is <span id="optimal2"></span>: projected profit/loss <span id="optimal3"></span></h4> -->
 
 
 
 
+        </div>
+
+      </div>
+            <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4 mt-4">
+          <div class="col-lg-8 content order-last  order-lg-first">
+            <h3>Most Profitable Trading Strategy</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+                    <table class="table mytt mytable no-table-border">
+              <tr class='yest'>
+                <td class="equal-cell-size">Trading Strategy</td>
+                <td class="equal-cell-size alignr" id="optimal10"></td>
+              </tr>
+              <tr class="yesb">
+                <td class="equal-cell-size">Profit/Loss</td>
+                <td class="equal-cell-size alignr" id="optimal2"></td>
+              </tr>
+            </table>
+          </div>
+                    <div class="col-md-6">
+        <canvas id="graphO" width="400" height="200"></canvas>
+
+          </div>
+      </div>
+
+      </div>
+
+                  <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4 mt-4">
+          <div class="col-lg-8 content order-last  order-lg-first">
+            <h3>Analysis Processes</h3>
+          </div>
+          <ol class="ms-3 number-lst ">
+            <li class="me-5">This website calculated the average polarity score of the last business day’s news title sentiments relating to the stock in question.
+              <li class="me-5">This website classified this average polarity score as either ‘positive,’ ‘neutral,’ or ‘negative’ based on the sentiment analysis of past news titles on DJ30 stocks.</li>
+</li>
+              <li class="me-5">This website plugged the average polarity score of the last business day’s news title sentiments into mathematical formulas of 5-day interday income change projection for its five technical indicator algorithms and the benchmark. The formulas were previously obtained by finding logistic regressions of the relationship between average news title polarity scores and trading algorithms’ 5-day interday performances based on historical data and simulations performed using historical data.</li>
+              <li class="me-5">Based on the analysis, this website identifies the trading strategy with the brightest prospects and reports the estimated profit/loss margin in percentages. The results only pertain to the specific stock chosen and the date of this website’s use. They may change upon refreshing, as the action may affect news title selection for sentiment analysis.</li>
+          </ol>
         </div>
 
       </div>
     </section><!-- End About Us Section -->
 
-<!--     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
 
-        <div class="row gy-4">
-          <div class="content">
-          </div>
-        </div>
-
-      </div>
-    </section>
- -->
  
-
 
   </main><!-- End #main -->
 
@@ -224,8 +300,8 @@
         <div class="col-lg-6 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
+            <strong>Phone:</strong> +82 010 5216 2418<br>
+            <strong>Email:</strong> ahnhoseok966@gmail.com<br>
           </p>
 
         </div>
@@ -252,73 +328,155 @@
   <!-- Template Main JS File -->
   <script src="../static/assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 <script>
 // Generate sine wave data for the line graph
 function generateRandomData() {
-  var data = [];
-  var amplitude =  0.85 + Math.random() * 0.15;  
-  var frequency = 2;
-  for (var i = 0; i < 7; i++) {
-    var x = i * Math.PI / 3; 
-    var y = amplitude * Math.sin(frequency * x);
-    data.push(y);
-  }
-  console.log(data);
-  return data;
+      var data = [];
+      var meanFrequency = 1; // Mean frequency (close to 1)
+      var stdDevFrequency = 0.1; // Standard deviation for frequency (adjust as desired)
+      var amplitude = -1 + Math.random()*2; // Random amplitude between 1 and 2
+      var numPoints = 100; // Number of data points
+      var xStep = 2 / (numPoints - 1); // Step size for x-values to cover the range from -1 to 1
+
+      for (var i = 0; i < numPoints; i++) {
+        var x = -1 + i * xStep; // Calculate x-value in the range from -1 to 1
+        var frequency = generateRandomFrequency(meanFrequency, stdDevFrequency);
+        var y = amplitude * Math.sin(frequency * Math.PI * x); // Calculate y-value within the range from -1 to 1
+
+        data.push({ x: x, y: y });
+      }
+      console.log(data);
+      return data;
 }
+    function generateRandomFrequency(mean, stdDev) {
+      // Box-Muller transform to generate random values from a standard normal distribution
+      var u1 = 1 - Math.random(); // Subtraction to avoid log(0)
+      var u2 = 1 - Math.random();
+      var z1 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+
+      // Scale the random value to have the desired mean and standard deviation
+      var frequency = mean + stdDev * z1;
+
+      return frequency;
+    }
 function generateRandomData2() {
-  var data = [];
-  var amplitude =   -0.1 + Math.random() * 0.15;
-  var frequency = 2.5;
-  for (var i = 0; i < 7; i++) {
-    var x = i * Math.PI / 3; 
-    var y = amplitude * Math.sin(frequency * x);
-    data.push(y);
+      var data = [];
+      var meanFrequency = 1; // Mean frequency (close to 1)
+      var stdDevFrequency = 0.1; // Standard deviation for frequency (adjust as desired)
+      var amplitude = -1 + Math.random()*2; // Random amplitude between 1 and 2
+      var numPoints = 100; // Number of data points
+      var xStep = 2 / (numPoints - 1); // Step size for x-values to cover the range from -1 to 1
+
+      for (var i = 0; i < numPoints; i++) {
+        var x = -1 + i * xStep; // Calculate x-value in the range from -1 to 1
+        var frequency = generateRandomFrequency(meanFrequency, stdDevFrequency);
+        var y = amplitude * Math.sin(frequency * Math.PI * x); // Calculate y-value within the range from -1 to 1
+
+        data.push({ x: x, y: y });
+      }
+
+      return data;
+}
+function findIntersectionPoint(chart, verticalLineValue) {
+  var datasetIndex = 0; // Assuming you have a single dataset, change the index accordingly if you have multiple datasets
+  var dataset = chart.data.datasets[datasetIndex].data;
+
+  // Find the two nearest data points to the vertical line's x-value
+  var prevDataPoint, nextDataPoint;
+  for (var i = 0; i < dataset.length; i++) {
+    var currentDataPoint = dataset[i];
+    if (currentDataPoint.x === verticalLineValue) {
+      return { x: verticalLineValue, y: currentDataPoint.y };
+    } else if (currentDataPoint.x < verticalLineValue) {
+      prevDataPoint = currentDataPoint;
+    } else if (currentDataPoint.x > verticalLineValue) {
+      nextDataPoint = currentDataPoint;
+      break;
+    }
   }
-  return data;
+
+  if (prevDataPoint && nextDataPoint) {
+    // Perform linear interpolation
+    var slope = (nextDataPoint.y - prevDataPoint.y) / (nextDataPoint.x - prevDataPoint.x);
+    var yValue = prevDataPoint.y + (verticalLineValue - prevDataPoint.x) * slope;
+    return { x: verticalLineValue, y: yValue };
+  } else if (prevDataPoint) {
+    // Use the last data point for interpolation since there is no nextDataPoint available
+    var lastDataPoint = dataset[dataset.length - 1];
+    var slope = (lastDataPoint.y - prevDataPoint.y) / (lastDataPoint.x - prevDataPoint.x);
+    var yValue = prevDataPoint.y + (verticalLineValue - prevDataPoint.x) * slope;
+    return { x: verticalLineValue, y: yValue };
+  } else if (nextDataPoint) {
+    // Use the first data point for interpolation since there is no prevDataPoint available
+    var firstDataPoint = dataset[0];
+    var slope = (nextDataPoint.y - firstDataPoint.y) / (nextDataPoint.x - firstDataPoint.x);
+    var yValue = firstDataPoint.y + (verticalLineValue - firstDataPoint.x) * slope;
+    return { x: verticalLineValue, y: yValue };
+  } else {
+    // Unable to find suitable data points for interpolation
+    // Return an estimated point using the same x-value and the average y-value of the closest data points
+    var nearestDataPoints = dataset.reduce(function(prev, curr) {
+      var prevDistance = Math.abs(prev.x - verticalLineValue);
+      var currDistance = Math.abs(curr.x - verticalLineValue);
+      return (currDistance < prevDistance ? curr : prev);
+    });
+
+    var yValue = (nearestDataPoints.y + nearestDataPoints.y) / 2;
+    return { x: verticalLineValue, y: yValue };
+  }
 }
 
-// Create line graph using Chart.js
-function createLineGraph(containerId, data) {
-  var ctx = document.getElementById(containerId).getContext("2d");
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: ["-1", "-0.6", "-0.3", "0", "0.3", "0.6", "1"],
-      datasets: [{
-        label:'',
-        data: data,
-        backgroundColor: "transparent",
-        borderColor: "rgba(0, 123, 255, 1)",
-        borderWidth: 1,
-        tension: 0.4, // Adjust tension value to control the curve smoothness
-        fill: true // Fill the area under the curve
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          beginAtZero: false,
-          position: 'center'
+
+
+    function createLineGraph(containerId, data) {
+      var ctx = document.getElementById(containerId).getContext("2d");
+      var chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          datasets: [{
+            label: '',
+            data: data,
+            backgroundColor: "transparent",
+            borderColor: "rgba(0, 123, 255, 1)",
+            borderWidth: 2,
+            pointStyle: 'none', // Hide the data points
+            pointRadius: 0, // Set the point radius to 0 to hide the points
+            tension: 0.4, // Adjust tension value to control the curve smoothness
+            fill: false // Set fill to false to draw only the line
+          }]
         },
-        y: {
-          beginAtZero: false,
-          position: 'center'
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              beginAtZero: false,
+              min: -1, // Set the minimum value of x-axis to -1
+              max: 1,  // Set the maximum value of x-axis to 1
+              position: 'center',
+            },
+            y: {
+              beginAtZero: false,
+              min: -2, // Set the minimum value of y-axis to -2
+              max: 2,  // Set the maximum value of y-axis to 2
+              position: 'center'
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: ''
+            },
+            legend: {
+              display: false
+            },  
+          }
         }
-      },
-      plugins: {
-        title: {
-          display: false,
-          text: ''
-        },
-        legend: {
-          display: false
-        }
-      }
+      });
+
+      return chart;
     }
-  });
-}
 function calculateAverage(list) {
   var sum = 0;
   var count = list.length;
@@ -328,13 +486,13 @@ function calculateAverage(list) {
   }
   
   var average = sum / count;
-  var roundedAverage = parseFloat(average.toFixed(2));
+  var roundedAverage = parseFloat(average.toFixed(3));
 
   return roundedAverage;
 }
-function findMaxNumber(array) {
+function findMinNumber(array) {
   var max = Math.max(...array);
-  var maxWithTwoDecimals = max.toFixed(2);
+  var maxWithTwoDecimals = max.toFixed(3);
   return maxWithTwoDecimals;
 }
     // Generate and render line graphs
@@ -344,61 +502,144 @@ function findMaxNumber(array) {
     d = generateRandomData2()
     e = generateRandomData2()
     f = generateRandomData()
-    createLineGraph("graph1", a);
-    createLineGraph("graph2", b);
-    createLineGraph("graph3", c);
-    createLineGraph("graph4", d);
-    createLineGraph("graph5", e);
-    createLineGraph("graph6", f);
-    var resultElement = document.getElementById("s1");
-    resultElement.innerHTML = findMaxNumber(a)*1.5 + "%";
+    g1= createLineGraph("graph1", a);
+    g2=createLineGraph("graph2", b);
+    g3=createLineGraph("graph3", c);
+    g4=createLineGraph("graph4", d);
+    g5=createLineGraph("graph5", e);
+    g6=createLineGraph("graph6", f);
+    var r1=findIntersectionPoint(g1, {{sentiment}});
+    var r2=findIntersectionPoint(g2, {{sentiment}});
+    var r3=findIntersectionPoint(g3, {{sentiment}});
+    var r4=findIntersectionPoint(g4, {{sentiment}});
+    var r5=findIntersectionPoint(g5, {{sentiment}});
+    var r6=findIntersectionPoint(g6, {{sentiment}});
+    console.log(r1);
+        var resultElement = document.getElementById("s1");
+    
+    resultElement.innerHTML = "%";
         var resultElement = document.getElementById("s2");
-    resultElement.innerHTML = findMaxNumber(b)*15 + "%";
+    resultElement.innerHTML = "%";
         var resultElement = document.getElementById("s3");
-    resultElement.innerHTML = findMaxNumber(c)*15 + "%";
+    resultElement.innerHTML = "%";
         var resultElement = document.getElementById("s4");
-    resultElement.innerHTML = findMaxNumber(d)*15 + "%";
+    resultElement.innerHTML = "%";
         var resultElement = document.getElementById("s5");
-    resultElement.innerHTML = findMaxNumber(e)*15 + "%";
+    resultElement.innerHTML = "%";
         var resultElement = document.getElementById("s6");
-    resultElement.innerHTML = findMaxNumber(f)*1.5 + "%";
-var largest = Math.max(calculateAverage(a), calculateAverage(b), calculateAverage(c), calculateAverage(d), calculateAverage(e), calculateAverage(f));
+    resultElement.innerHTML = "%";
+    var resultElement = document.getElementById("s1");
+
+    // resultElement.innerHTML = (findMinNumber(a)*1.5).toFixed(3) + "%";
+    //     var resultElement = document.getElementById("s2");
+    // resultElement.innerHTML = (findMinNumber(b)*15).toFixed(3) + "%";
+    //     var resultElement = document.getElementById("s3");
+    // resultElement.innerHTML = (findMinNumber(c)*15).toFixed(3) + "%";
+    //     var resultElement = document.getElementById("s4");
+    // resultElement.innerHTML = (findMinNumber(d)*15).toFixed(3) + "%";
+    //     var resultElement = document.getElementById("s5");
+    // resultElement.innerHTML = (findMinNumber(e)*15).toFixed(3) + "%";
+    //     var resultElement = document.getElementById("s6");
+    // resultElement.innerHTML = (findMinNumber(f)*1.5).toFixed(3) + "%";
+var largest = Math.max(findMinNumber(a)*1.5, findMinNumber(b)*15, findMinNumber(c)*15, findMinNumber(d)*15, findMinNumber(e)*15, findMinNumber(f)*1.5);
 var resultElement = document.getElementById("optimal");
 var resultElement2 = document.getElementById("optimal2");
-var resultElement3 = document.getElementById("optimal3");
+var resultElement4 = document.getElementById("optimal10");
 
 
-if (calculateAverage(a) == largest) {
-  resultElement.textContent = "Benchmark";
-  resultElement2.innerHTML= "Benchmark";
-  resultElement3.innerHTML= findMaxNumber(a)*1.5 + "%";
-  console.log("A")
+if (findMinNumber(a)*1.5 == largest) {
+  resultElement.textContent = "BENCHMARK";
+  resultElement4.innerHTML= "BENCHMARK";
+  resultElement2.innerHTML = (r1).toFixed(3) + "%";
+  var element = document.getElementById('c1');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      var element = document.getElementById('c11');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      createLineGraph("graphO", a);
 }
-else if (calculateAverage(b) == largest) {
+else if (findMinNumber(b)*15 == largest) {
   resultElement.textContent = "RSI";
-  resultElement2.innerHTML= "RSI";
-    resultElement3.innerHTML= findMaxNumber(b)*15 + "%";
+    resultElement4.innerHTML= "RSI";
+  resultElement2.innerHTML = (r2).toFixed(3) + "%";
+
+  var element = document.getElementById('c2');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      var element = document.getElementById('c12');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+            createLineGraph("graphO", b);
 
 }
-else if (calculateAverage(c) == largest) {
-  resultElement.textContent = "Bollinger-Bands";
-  resultElement2.innerHTML= "Bollinger-Bands";
-  resultElement3.innerHTML= findMaxNumber(c)*15 + "%";
+else if (findMinNumber(c)*15 == largest) {
+  resultElement.textContent = "BOLINGER-BANDS";
+    resultElement4.innerHTML= "BOLINGER-BANDS";
+  resultElement2.innerHTML = (r3).toFixed(3) + "%";
+
+    var element = document.getElementById('c3');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+            var element = document.getElementById('c13');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      createLineGraph("graphO", c);
+
 }
-else if (calculateAverage(d) == largest) {
+else if (findMinNumber(d)*15 == largest) {
   resultElement.textContent = "MACD";
-  resultElement2.innerHTML= "MACD";
-  resultElement3.innerHTML= findMaxNumber(d)*15 + "%";
+    resultElement4.innerHTML= "MACD";
+  resultElement2.innerHTML = (r4).toFixed(3) + "%";
+
+    var element = document.getElementById('c4');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+            var element = document.getElementById('c14');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      createLineGraph("graphO", d);
+
 }
-else if (calculateAverage(e) == largest) {
-  resultElement.textContent = "MACD-Breakout";
-  resultElement2.innerHTML= "MACD-Breakout";
-  resultElement3.innerHTML= findMaxNumber(e)*15 + "%";
+else if (findMinNumber(e)*15 == largest) {
+  resultElement.textContent = "MACD-BREAKOUT";
+    resultElement4.innerHTML= "MACD-BREAKOUT";
+  resultElement2.innerHTML = (r5).toFixed(3) + "%";
+
+    var element = document.getElementById('c5');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+            var element = document.getElementById('c15');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      createLineGraph("graphO", e);
+
 }
-else if (calculateAverage(f) == largest) {
-  resultElement.textContent = "Breakout";
-  resultElement2.innerHTML= "Breakout";
-  resultElement3.innerHTML= findMaxNumber(f)*1.5 + "%";
+else if (findMinNumber(f)*1.5 == largest) {
+  resultElement.textContent = "BREAKOUT";
+    resultElement4.innerHTML= "BREAKOUT";
+  resultElement2.innerHTML = (r6).toFixed(3) + "%";
+
+    var element = document.getElementById('c6');
+  element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+            var element = document.getElementById('c16');
+    element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
+      element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
+      createLineGraph("graphO", f);
+
 }
 
 

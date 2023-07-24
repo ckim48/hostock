@@ -20,6 +20,9 @@
   font-family: "Poppins", sans-serif !important;
   font-weight: 500;
 }
+.myfont2{
+  font-size: 15px;
+}
     /* Style the progress element */
     progress {
       width: 300px;
@@ -2264,7 +2267,7 @@ font-weight: 700;
   font-size: 12px;
   font-family: 'Helvetica', sans-serif;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 1);
   padding: 0 15px;
   line-height: 32px;
   color: black;
@@ -2283,7 +2286,7 @@ font-weight: 700;
   font-size: 12px;
   font-family: 'Helvetica', sans-serif;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 1);
   padding: 0 15px;
   line-height: 32px;
   color: black;
@@ -2369,18 +2372,46 @@ font-weight: 700;
 .me-6{
   margin-right:10px !important;
 }
+.myh3{
+  font-size: 40px;
+  color: white !important;
+}
+
+.my-md-2 {
+    border-top: 2px solid rgba(0, 123, 255, 1);
+    padding-top: 24px; 
+    padding-bottom: 25px; 
+    margin-top: 0; 
+    margin-bottom: 0 !important;
+    border-bottom: 2px solid rgba(0, 123, 255, 1);
+  }
+.my-md-3{
+      border-bottom: 2px solid rgba(0, 123, 255, 1);
+      padding-bottom: 15px; 
+      margin-top: 0 !important;
+
+}
 .me-62{
   margin-right:75px !important;
 }
 .sen-val{
-  margin-left: 250px;
+  margin-left: 160px;
 }
 .sen-val2{
-  margin-left: 265px;
+  margin-left: 175px;
 }
 .sen-val3{
-  margin-left: 260px;
+  margin-left: 170px;
 }
 .text-left{
   text-align: left;
+}
+.number-lst{
+  font-size: 17px !important;
+  font-family: var(--font-secondary);
+  padding-right: 30px;
+}
+.myppp{
+    font-size: 17px !important;
+  font-family: var(--font-secondary);
 }

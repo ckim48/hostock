@@ -516,7 +516,13 @@ def index():
 @app.route('/about', methods = ['POST', 'GET'])
 def about():
     time.sleep(5)
-    stockname = request.form['stock'].upper()
+    stockname = "a"
+    try:
+        stockname = request.form['stock'].upper()
+    except:
+        pass
+    if stockname =="a":
+        stockname = request.args.get('param1').upper()
     if stockname == "AAPL":
         stocknameR = "Apple"
         sentiment = get_setniment("AAPL")
@@ -555,6 +561,7 @@ def about():
     else:
         length  = 300 + sentiment * 100
     sentimentL = get_setnimentL(sentiment).upper()
+    sentiment = round(sentiment,3)
     st = compare_strategy()
     return render_template('about.html',stock=stockname,sentimentL=sentimentL, stockname= stocknameR,sentiment=sentiment,length=length,strategy=st)
 @app.route('/aboutp', methods = ['POST', 'GET'])
