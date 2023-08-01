@@ -551,11 +551,11 @@ def about():
         stock_value = request.args.get('stock')
         stocknameR = "Walmart"
         sentiment = get_setniment("WMT")
-    elif stockname == "PG" and stockname == "PROCTER & GAMBLE":
+    elif stockname == "PG" or stockname == "PROCTER & GAMBLE":
         stock_value = request.args.get('stock')
         stocknameR = "Procter & Gamble"
         sentiment = get_setniment("PG")
-    elif stockname == "CVX" and stockname == "CHEVRON CORPORATION":
+    elif stockname == "CVX" or stockname == "CHEVRON CORPORATION":
         stock_value = request.args.get('stock')
         stocknameR = "Chevron Corporation"
         sentiment = get_setniment("CVX")
