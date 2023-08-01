@@ -515,47 +515,59 @@ def index():
 	return render_template('index.html')
 @app.route('/about', methods = ['POST', 'GET'])
 def about():
-    time.sleep(5)
+
     stockname = "a"
     try:
         stockname = request.form['stock'].upper()
     except:
         pass
     if stockname =="a":
-        stockname = request.args.get('param1').upper()
-    if stockname == "AAPL":
+        stockname = request.args.get('stock').upper()
+    if stockname == "AAPL" or stockname == "APPLE":
         stocknameR = "Apple"
+        stock_value = request.args.get('stock')
         sentiment = get_setniment("AAPL")
-    elif stockname == "MSFT":
+    elif stockname == "MSFT" or stockname == "MICROSOFT":
         stocknameR = "Microsoft"
+        stock_value = request.args.get('stock')
         sentiment = get_setniment("MSFT")
-    elif stockname == "UNH":
+    elif stockname == "UNH" or stockname == "UNITEDHEALTH":
+        stock_value = request.args.get('stock')
         stocknameR = "UnitedHealth"
         sentiment = get_setniment("UNH")
-    elif stockname == "JNJ":
+    elif stockname == "JNJ" or stockname == "JOHNSON & JOHNSON":
+        stock_value = request.args.get('stock')
         stocknameR = "Johnson & Johnson"
         sentiment = get_setniment("JNJ")
-    elif stockname == "V":
+    elif stockname == "V" or stockname == "VISA":
+        stock_value = request.args.get('stock')
         stocknameR = "Visa"
         sentiment = get_setniment("V")
-    elif stockname == "JPM":
+    elif stockname == "JPM" or stockname == "JPMORGAN":
+        stock_value = request.args.get('stock')
         stocknameR = "JPMorgan Chase & Co"
         sentiment = get_setniment("JPM")
-    elif stockname == "WMT":
+    elif stockname == "WMT" or stockname == "WALMART":
+        stock_value = request.args.get('stock')
         stocknameR = "Walmart"
         sentiment = get_setniment("WMT")
-    elif stockname == "PG":
+    elif stockname == "PG" and stockname == "PROCTER & GAMBLE":
+        stock_value = request.args.get('stock')
         stocknameR = "Procter & Gamble"
         sentiment = get_setniment("PG")
-    elif stockname == "CVX":
+    elif stockname == "CVX" and stockname == "CHEVRON CORPORATION":
+        stock_value = request.args.get('stock')
         stocknameR = "Chevron Corporation"
         sentiment = get_setniment("CVX")
-    elif stockname == "HD":
+    elif stockname == "HD" or stockname == "HOME DEPOT":
+        stock_value = request.args.get('stock')
         stocknameR = "Home Depot"
         sentiment = get_setniment("HD")
     else:
-        stocknameR = "Home Depot"
-        sentiment = get_setniment("HD")
+        flash('This is a flash message!')
+        return redirect(url_for('index'))
+
+    time.sleep(5)
     if sentiment > 0:
         length = 300 + sentiment * 100
     else:
@@ -563,7 +575,7 @@ def about():
     sentimentL = get_setnimentL(sentiment).upper()
     sentiment = round(sentiment,3)
     st = compare_strategy()
-    return render_template('about.html',stock=stockname,sentimentL=sentimentL, stockname= stocknameR,sentiment=sentiment,length=length,strategy=st)
+    return render_template('about.html',stock=stockname,sentimentL=sentimentL, stockname= stocknameR,sentiment=sentiment,length=length,strategy=st, param1=stockname)
 @app.route('/aboutp', methods = ['POST', 'GET'])
 def aboutp():
     return render_template('aboutp.html')

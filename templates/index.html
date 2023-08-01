@@ -14,17 +14,18 @@
   <!-- Favicons -->
   <link href="../static/assets/img/favicon.png" rel="icon">
   <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
   <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">  <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
 
@@ -62,7 +63,7 @@
     <div class="container">
       <div class="row gy-4 d-flex">
           <div class="s006">
-            <form method="POST" action="/about">
+            <form method="POST" action="{{ url_for('about') }}">
                 <p class="text-white head-top">Technical Indicator Finder</p>
                 <!-- <p class="text-white head-top2"> </p> -->
                 <div class="inner-form">
@@ -75,22 +76,33 @@
                     <input id="search" type="text" name="stock" placeholder="Type in a Dow Jones Industrial Average Stock of your choice!" value="" />
                   </div>
                 </div>
+
                 <div class="suggestion-wrap">
-                  <a href = "/about?param1=aapl"><span>AAPL</span></a>
-                  <a href = "/about?param1=msft"><span>MSFT</span></a>
-                  <a href = "/about?param1=unh"><span>UNH</span></a>
-                  <a href = "/about?param1=jnj"><span>JNJ</span></a>
-                  <a href = "/about?param1=v"><span>V</span></a>
+                  <a href = "/about?stock=aapl"><span>AAPL</span></a>
+                  <a href = "/about?stock=msft"><span>MSFT</span></a>
+                  <a href = "/about?stock=unh"><span>UNH</span></a>
+                  <a href = "/about?stock=jnj"><span>JNJ</span></a>
+                  <a href = "/about?stock=v"><span>V</span></a>
                 </div>
-                            <div class="suggestion-wrap2" id="suggestion-wrap">
-              <a href = "/about?param1=jpm"><span>JPM</span></a>
-              <a href = "/about?param1=wmt"><span>WMT</span></a>
-              <a href = "/about?param1=pg"><span>PG</span></a>
-              <a href = "/about?param1=cvx"><span>CVX</span></a>
-              <a href = "/about?param1=hd"><span>HD</span></a>
+               <div class="suggestion-wrap2" id="suggestion-wrap">
+              <a href = "/about?stock=jpm"><span>JPM</span></a>
+              <a href = "/about?stock=wmt"><span>WMT</span></a>
+              <a href = "/about?stock=pg"><span>PG</span></a>
+              <a href = "/about?stock=cvx"><span>CVX</span></a>
+              <a href = "/about?stock=hd"><span>HD</span></a>
             </div>
 
       <a class="btn-scroll mt-5" title="Scroll Down" id="scroll-down-btn"><i class="fa-solid fa-angle-down"></i></a>
+              {% with messages = get_flashed_messages() %}
+            {% if messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Sorry, but we only offer results for Apple, Microsoft, United Health Incorporated, Johnson & Johnson, JPMorgan Chase & Co, Walmart, Procter & Gamble, Chevron, and Home Depot as of the current date.
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+                {% endif %}
+        {% endwith %}
                   </form>
 
           </div>
@@ -116,8 +128,11 @@
   });
 </script>
   <!-- Vendor JS Files -->
-  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script src="../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../static/assets/vendor/aos/aos.js"></script>

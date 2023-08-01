@@ -38,6 +38,11 @@
 body {
   font-family: var(--font-default);
   color: var(--color-default);
+    margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -2002,11 +2007,15 @@ font-weight: 700;
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+/*footer{
+  height: 50px !important;
+}*/
 .footer {
   font-size: 14px;
   background-color: var(--color-secondary);
   padding: 50px 0;
   color: white;
+
 }
 
 .footer .footer-info .logo {
@@ -2410,6 +2419,9 @@ font-weight: 700;
   font-size: 17px !important;
   font-family: var(--font-secondary);
   padding-right: 30px;
+}
+.content2 {
+  flex: 1; 
 }
 .myppp{
     font-size: 17px !important;

@@ -38,7 +38,7 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-b----etween">
 
       <a href="/" class="logo d-flex align-items-center">
         <h1 class="text-blue myf">TIF</h1>
@@ -260,7 +260,7 @@
             </table>
           </div>
                     <div class="col-md-6">
-        <canvas id="graphO" width="400" height="200"></canvas>
+        <canvas id="graph0" width="400" height="200" class="ms-3"></canvas>
 
           </div>
       </div>
@@ -327,156 +327,135 @@
 
   <!-- Template Main JS File -->
   <script src="../static/assets/js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 <script>
-// Generate sine wave data for the line graph
-function generateRandomData() {
-      var data = [];
-      var meanFrequency = 1; // Mean frequency (close to 1)
-      var stdDevFrequency = 0.1; // Standard deviation for frequency (adjust as desired)
-      var amplitude = -1 + Math.random()*2; // Random amplitude between 1 and 2
-      var numPoints = 100; // Number of data points
-      var xStep = 2 / (numPoints - 1); // Step size for x-values to cover the range from -1 to 1
+function generateSinusoidalData(numPoints) {
+  const data = [];
+  const stepSize = 2 / (numPoints - 1); 
+  let x = -1;
 
-      for (var i = 0; i < numPoints; i++) {
-        var x = -1 + i * xStep; // Calculate x-value in the range from -1 to 1
-        var frequency = generateRandomFrequency(meanFrequency, stdDevFrequency);
-        var y = amplitude * Math.sin(frequency * Math.PI * x); // Calculate y-value within the range from -1 to 1
+  for (let i = 0; i < numPoints; i++) {
 
-        data.push({ x: x, y: y });
-      }
-      console.log(data);
-      return data;
-}
-    function generateRandomFrequency(mean, stdDev) {
-      // Box-Muller transform to generate random values from a standard normal distribution
-      var u1 = 1 - Math.random(); // Subtraction to avoid log(0)
-      var u2 = 1 - Math.random();
-      var z1 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+    const amplitude = Math.pow(1, 1.5); 
+    const y = amplitude * Math.sin(2 * Math.PI * x) + 0.3 * Math.random();
 
-      // Scale the random value to have the desired mean and standard deviation
-      var frequency = mean + stdDev * z1;
-
-      return frequency;
-    }
-function generateRandomData2() {
-      var data = [];
-      var meanFrequency = 1; // Mean frequency (close to 1)
-      var stdDevFrequency = 0.1; // Standard deviation for frequency (adjust as desired)
-      var amplitude = -1 + Math.random()*2; // Random amplitude between 1 and 2
-      var numPoints = 100; // Number of data points
-      var xStep = 2 / (numPoints - 1); // Step size for x-values to cover the range from -1 to 1
-
-      for (var i = 0; i < numPoints; i++) {
-        var x = -1 + i * xStep; // Calculate x-value in the range from -1 to 1
-        var frequency = generateRandomFrequency(meanFrequency, stdDevFrequency);
-        var y = amplitude * Math.sin(frequency * Math.PI * x); // Calculate y-value within the range from -1 to 1
-
-        data.push({ x: x, y: y });
-      }
-
-      return data;
-}
-function findIntersectionPoint(chart, verticalLineValue) {
-  var datasetIndex = 0; // Assuming you have a single dataset, change the index accordingly if you have multiple datasets
-  var dataset = chart.data.datasets[datasetIndex].data;
-
-  // Find the two nearest data points to the vertical line's x-value
-  var prevDataPoint, nextDataPoint;
-  for (var i = 0; i < dataset.length; i++) {
-    var currentDataPoint = dataset[i];
-    if (currentDataPoint.x === verticalLineValue) {
-      return { x: verticalLineValue, y: currentDataPoint.y };
-    } else if (currentDataPoint.x < verticalLineValue) {
-      prevDataPoint = currentDataPoint;
-    } else if (currentDataPoint.x > verticalLineValue) {
-      nextDataPoint = currentDataPoint;
-      break;
-    }
-  }
-
-  if (prevDataPoint && nextDataPoint) {
-    // Perform linear interpolation
-    var slope = (nextDataPoint.y - prevDataPoint.y) / (nextDataPoint.x - prevDataPoint.x);
-    var yValue = prevDataPoint.y + (verticalLineValue - prevDataPoint.x) * slope;
-    return { x: verticalLineValue, y: yValue };
-  } else if (prevDataPoint) {
-    // Use the last data point for interpolation since there is no nextDataPoint available
-    var lastDataPoint = dataset[dataset.length - 1];
-    var slope = (lastDataPoint.y - prevDataPoint.y) / (lastDataPoint.x - prevDataPoint.x);
-    var yValue = prevDataPoint.y + (verticalLineValue - prevDataPoint.x) * slope;
-    return { x: verticalLineValue, y: yValue };
-  } else if (nextDataPoint) {
-    // Use the first data point for interpolation since there is no prevDataPoint available
-    var firstDataPoint = dataset[0];
-    var slope = (nextDataPoint.y - firstDataPoint.y) / (nextDataPoint.x - firstDataPoint.x);
-    var yValue = firstDataPoint.y + (verticalLineValue - firstDataPoint.x) * slope;
-    return { x: verticalLineValue, y: yValue };
-  } else {
-    // Unable to find suitable data points for interpolation
-    // Return an estimated point using the same x-value and the average y-value of the closest data points
-    var nearestDataPoints = dataset.reduce(function(prev, curr) {
-      var prevDistance = Math.abs(prev.x - verticalLineValue);
-      var currDistance = Math.abs(curr.x - verticalLineValue);
-      return (currDistance < prevDistance ? curr : prev);
+    data.push({
+      x: x,
+      y: y
     });
 
-    var yValue = (nearestDataPoints.y + nearestDataPoints.y) / 2;
-    return { x: verticalLineValue, y: yValue };
+    x += stepSize;
   }
+
+  return data;
+}
+
+function generateSinusoidalData2(numPoints) {
+  const data = [];
+  const stepSize = 2 / (numPoints - 1); 
+  let x = -1;
+
+  for (let i = 0; i < numPoints; i++) {
+
+    const amplitude = Math.pow(1, 1); 
+    const y = amplitude * Math.sin(1.3 * Math.PI * x) + 0.3 * Math.random();
+
+    data.push({
+      x: x,
+      y: y
+    });
+
+    x += stepSize;
+  }
+
+  return data;
 }
 
 
+function drawSinusoidalChart(canvas, data, tension, verticalLineX) {
+  const ctx = canvas.getContext("2d");
 
-    function createLineGraph(containerId, data) {
-      var ctx = document.getElementById(containerId).getContext("2d");
-      var chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          datasets: [{
-            label: '',
-            data: data,
-            backgroundColor: "transparent",
-            borderColor: "rgba(0, 123, 255, 1)",
-            borderWidth: 2,
-            pointStyle: 'none', // Hide the data points
-            pointRadius: 0, // Set the point radius to 0 to hide the points
-            tension: 0.4, // Adjust tension value to control the curve smoothness
-            fill: false // Set fill to false to draw only the line
-          }]
+  const chartConfig = {
+    type: "line",
+    data: {
+      datasets: [{
+        data: data,
+        borderColor: "rgba(0, 123, 255, 0.7)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        tension: tension,
+        pointRadius: 0,
+        showLine: true 
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          type: "linear",
+          position: "center",
+          min: -1,
+          max: 1
         },
-        options: {
-          responsive: true,
-          scales: {
-            x: {
-              beginAtZero: false,
-              min: -1, // Set the minimum value of x-axis to -1
-              max: 1,  // Set the maximum value of x-axis to 1
-              position: 'center',
-            },
-            y: {
-              beginAtZero: false,
-              min: -2, // Set the minimum value of y-axis to -2
-              max: 2,  // Set the maximum value of y-axis to 2
-              position: 'center'
-            }
-          },
-          plugins: {
-            title: {
-              display: true,
-              text: ''
-            },
-            legend: {
-              display: false
-            },  
-          }
+        y: {
+          position: "center",
+          beginAtZero: false
         }
-      });
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        customLine: {
+          verticalLineX: verticalLineX
+        }
+      }
+    },
+    plugins: [{
+      id: 'customLine',
+      afterDraw: (chart, args, options) => {
+        const { ctx, scales, chartArea } = chart;
+        const { x, y } = scales;
+        const { verticalLineX } = options;
 
-      return chart;
-    }
+        if (verticalLineX < x.min || verticalLineX > x.max) return;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x.getPixelForValue(verticalLineX), chartArea.top);
+        ctx.lineTo(x.getPixelForValue(verticalLineX), chartArea.bottom);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(0, 0, 255, 0.7)";
+        ctx.stroke();
+        ctx.restore();
+
+        const dataIndex = getClosestDataIndex(data, verticalLineX);
+        const dataPoint = data[dataIndex];
+
+        const xPixel = x.getPixelForValue(dataPoint.x);
+        const yPixel = y.getPixelForValue(dataPoint.y);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "blue";
+        ctx.fill();
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }]
+  };
+
+  return new Chart(ctx, chartConfig);
+}
+function getYValueAtX(chart, targetX) {
+  const data = chart.data.datasets[0].data;
+  const dataIndex = getClosestDataIndex(data, targetX);
+  const dataPoint = data[dataIndex];
+  return dataPoint.y;
+}
+
 function calculateAverage(list) {
   var sum = 0;
   var count = list.length;
@@ -495,39 +474,64 @@ function findMinNumber(array) {
   var maxWithTwoDecimals = max.toFixed(3);
   return maxWithTwoDecimals;
 }
-    // Generate and render line graphs
-    a = generateRandomData()
-    b = generateRandomData2()
-    c = generateRandomData2()
-    d = generateRandomData2()
-    e = generateRandomData2()
-    f = generateRandomData()
-    g1= createLineGraph("graph1", a);
-    g2=createLineGraph("graph2", b);
-    g3=createLineGraph("graph3", c);
-    g4=createLineGraph("graph4", d);
-    g5=createLineGraph("graph5", e);
-    g6=createLineGraph("graph6", f);
-    var r1=findIntersectionPoint(g1, {{sentiment}});
-    var r2=findIntersectionPoint(g2, {{sentiment}});
-    var r3=findIntersectionPoint(g3, {{sentiment}});
-    var r4=findIntersectionPoint(g4, {{sentiment}});
-    var r5=findIntersectionPoint(g5, {{sentiment}});
-    var r6=findIntersectionPoint(g6, {{sentiment}});
-    console.log(r1);
+function getClosestDataIndex(data, targetX) {
+  let minDist = Infinity;
+  let closestIndex = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    const dist = Math.abs(data[i].x - targetX);
+    if (dist < minDist) {
+      minDist = dist;
+      closestIndex = i;
+    }
+  }
+
+  return closestIndex;
+}
+
+const data = generateSinusoidalData(50);
+    const canvas = document.getElementById("graph1");
+a = drawSinusoidalChart(canvas, data, 0.2,{{sentiment}});
+const data2 = generateSinusoidalData(50);
+
+    const canvas2 = document.getElementById("graph2");
+b = drawSinusoidalChart(canvas2, data2, 0.2,{{sentiment}});
+const data3 = generateSinusoidalData2(50);
+
+    const canvas3 = document.getElementById("graph3");
+c = drawSinusoidalChart(canvas3, data3, 0.2,{{sentiment}});
+const data4 = generateSinusoidalData2(50);
+
+    const canvas4 = document.getElementById("graph4");
+d = drawSinusoidalChart(canvas4, data4, 0.2,{{sentiment}});
+const data5 = generateSinusoidalData2(50);
+
+    const canvas5 = document.getElementById("graph5");
+e = drawSinusoidalChart(canvas5, data5, 0.2,{{sentiment}});
+const data6 = generateSinusoidalData(50);
+
+    const canvas6 = document.getElementById("graph6");
+f = drawSinusoidalChart(canvas6, data6, 0.2,{{sentiment}});
+  var p1 = getYValueAtX(a, {{sentiment}})
+  var p2 = getYValueAtX(b, {{sentiment}})
+  var p3 = getYValueAtX(c, {{sentiment}})
+  var p4 = getYValueAtX(d, {{sentiment}})
+  var p5 = getYValueAtX(e, {{sentiment}})
+  var p6 = getYValueAtX(f, {{sentiment}})
+
         var resultElement = document.getElementById("s1");
     
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p1.toFixed(3)+"%";
         var resultElement = document.getElementById("s2");
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p2.toFixed(3)+"%";
         var resultElement = document.getElementById("s3");
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p3.toFixed(3)+"%";
         var resultElement = document.getElementById("s4");
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p4.toFixed(3)+"%";
         var resultElement = document.getElementById("s5");
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p5.toFixed(3)+"%";
         var resultElement = document.getElementById("s6");
-    resultElement.innerHTML = "%";
+    resultElement.innerHTML = p6.toFixed(3)+"%";
     var resultElement = document.getElementById("s1");
 
     // resultElement.innerHTML = (findMinNumber(a)*1.5).toFixed(3) + "%";
@@ -541,16 +545,16 @@ function findMinNumber(array) {
     // resultElement.innerHTML = (findMinNumber(e)*15).toFixed(3) + "%";
     //     var resultElement = document.getElementById("s6");
     // resultElement.innerHTML = (findMinNumber(f)*1.5).toFixed(3) + "%";
-var largest = Math.max(findMinNumber(a)*1.5, findMinNumber(b)*15, findMinNumber(c)*15, findMinNumber(d)*15, findMinNumber(e)*15, findMinNumber(f)*1.5);
+var largest = Math.max(p1, p2, p3, p4, p5, p6);
 var resultElement = document.getElementById("optimal");
 var resultElement2 = document.getElementById("optimal2");
 var resultElement4 = document.getElementById("optimal10");
 
 
-if (findMinNumber(a)*1.5 == largest) {
+if (p1 == largest) {
   resultElement.textContent = "BENCHMARK";
   resultElement4.innerHTML= "BENCHMARK";
-  resultElement2.innerHTML = (r1).toFixed(3) + "%";
+  resultElement2.innerHTML = (p1).toFixed(3) + "%";
   var element = document.getElementById('c1');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
@@ -559,12 +563,13 @@ if (findMinNumber(a)*1.5 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-      createLineGraph("graphO", a);
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data, 0.2,{{sentiment}})
 }
-else if (findMinNumber(b)*15 == largest) {
+else if (p2 == largest) {
   resultElement.textContent = "RSI";
     resultElement4.innerHTML= "RSI";
-  resultElement2.innerHTML = (r2).toFixed(3) + "%";
+  resultElement2.innerHTML = (p2).toFixed(3) + "%";
 
   var element = document.getElementById('c2');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
@@ -574,13 +579,13 @@ else if (findMinNumber(b)*15 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-            createLineGraph("graphO", b);
-
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data2, 0.2,{{sentiment}})
 }
-else if (findMinNumber(c)*15 == largest) {
+else if (p3 == largest) {
   resultElement.textContent = "BOLINGER-BANDS";
     resultElement4.innerHTML= "BOLINGER-BANDS";
-  resultElement2.innerHTML = (r3).toFixed(3) + "%";
+  resultElement2.innerHTML = (p3).toFixed(3) + "%";
 
     var element = document.getElementById('c3');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
@@ -590,13 +595,13 @@ else if (findMinNumber(c)*15 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-      createLineGraph("graphO", c);
-
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data3, 0.2,{{sentiment}})
 }
-else if (findMinNumber(d)*15 == largest) {
+else if (p4 == largest) {
   resultElement.textContent = "MACD";
     resultElement4.innerHTML= "MACD";
-  resultElement2.innerHTML = (r4).toFixed(3) + "%";
+  resultElement2.innerHTML = (p4).toFixed(3) + "%";
 
     var element = document.getElementById('c4');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
@@ -606,13 +611,13 @@ else if (findMinNumber(d)*15 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-      createLineGraph("graphO", d);
-
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data4, 0.2,{{sentiment}})
 }
-else if (findMinNumber(e)*15 == largest) {
+else if (p5 == largest) {
   resultElement.textContent = "MACD-BREAKOUT";
     resultElement4.innerHTML= "MACD-BREAKOUT";
-  resultElement2.innerHTML = (r5).toFixed(3) + "%";
+  resultElement2.innerHTML = (p5).toFixed(3) + "%";
 
     var element = document.getElementById('c5');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
@@ -622,13 +627,13 @@ else if (findMinNumber(e)*15 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-      createLineGraph("graphO", e);
-
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data5, 0.2,{{sentiment}})
 }
-else if (findMinNumber(f)*1.5 == largest) {
+else if (p6 == largest) {
   resultElement.textContent = "BREAKOUT";
     resultElement4.innerHTML= "BREAKOUT";
-  resultElement2.innerHTML = (r6).toFixed(3) + "%";
+  resultElement2.innerHTML = (p6).toFixed(3) + "%";
 
     var element = document.getElementById('c6');
   element.style.borderTop = '5px solid rgba(0, 123, 255, 1)';
@@ -638,8 +643,8 @@ else if (findMinNumber(f)*1.5 == largest) {
     element.style.borderBottom = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderLeft = '5px solid rgba(0, 123, 255, 1)';
       element.style.borderRight = '5px solid rgba(0, 123, 255, 1)';
-      createLineGraph("graphO", f);
-
+      const canvas22 = document.getElementById("graph0");
+      drawSinusoidalChart(canvas22, data6, 0.2,{{sentiment}})
 }
 
 
